@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Pull requests run on Linux (fast and cheap). Every push to main runs on
+# Linux, Windows and macOS, so a platform break shows up the day it lands.
+# To check all three OSes on every PR, replace the `os` line with:
+#   os: [ubuntu-latest, windows-latest, macos-latest]
+# Feature PRs must not edit this file (AGENTS.md rule 9).
+jobs:
+  check:
+    name: cargo xtask ci (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ github.event_name == 'pull_request' && fromJSON('["ubuntu-latest"]') || fromJSON('["ubuntu-latest","windows-latest","macos-latest"]') }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Run the full gate
+        run: cargo xtask ci

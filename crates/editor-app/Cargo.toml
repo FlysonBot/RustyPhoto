@@ -1,0 +1,21 @@
+[package]
+name = "editor-app"
+description = "L6: the desktop application (egui window, menus, canvas). The only crate allowed to use the GUI library."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "editor"
+path = "src/main.rs"
+
+[dependencies]
+editor-catalog = { path = "../editor-catalog" }
+editor-doc = { path = "../editor-doc" }
+editor-engine = { path = "../editor-engine" }
+eframe.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

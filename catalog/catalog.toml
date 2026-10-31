@@ -1,0 +1,310 @@
+# The feature catalog: the WHOLE target product, written down as data.
+#
+# Every feature the finished editor should have gets one entry with a stable id.
+# An entry is "live" when a command with the same id exists in the engine
+# (crates/editor-engine/src/cmd/). Missing entries show greyed out in the menus.
+# `cargo xtask catalog` writes coverage to docs/generated/coverage.md.
+#
+# Rules:
+# - Ids never change once used. Format: area.group.name, lowercase, dots.
+# - Product names of other software never appear in labels.
+# - App-shell actions (undo, redo, quit) are built into the app, not listed here.
+# - This seed list is a starting point. The architect's first session
+#   expands it to the full target (expect several hundred entries).
+
+# ---------------- File ----------------
+[[item]]
+id = "file.new"
+menu = "File"
+label = "New..."
+shortcut = "Ctrl+N"
+
+[[item]]
+id = "file.open"
+menu = "File"
+label = "Open..."
+shortcut = "Ctrl+O"
+
+[[item]]
+id = "file.save"
+menu = "File"
+label = "Save"
+shortcut = "Ctrl+S"
+
+[[item]]
+id = "file.save_as"
+menu = "File"
+label = "Save As..."
+shortcut = "Ctrl+Shift+S"
+
+[[item]]
+id = "file.export.png"
+menu = "File/Export"
+label = "PNG..."
+
+[[item]]
+id = "file.export.jpeg"
+menu = "File/Export"
+label = "JPEG..."
+
+# ---------------- Edit ----------------
+[[item]]
+id = "edit.cut"
+menu = "Edit"
+label = "Cut"
+shortcut = "Ctrl+X"
+
+[[item]]
+id = "edit.copy"
+menu = "Edit"
+label = "Copy"
+shortcut = "Ctrl+C"
+
+[[item]]
+id = "edit.paste"
+menu = "Edit"
+label = "Paste"
+shortcut = "Ctrl+V"
+
+[[item]]
+id = "edit.fill"
+menu = "Edit"
+label = "Fill..."
+
+[[item]]
+id = "edit.transform.free"
+menu = "Edit"
+label = "Free Transform"
+shortcut = "Ctrl+T"
+
+# ---------------- Image ----------------
+[[item]]
+id = "image.adjust.levels"
+menu = "Image/Adjustments"
+label = "Levels..."
+shortcut = "Ctrl+L"
+
+[[item]]
+id = "image.adjust.curves"
+menu = "Image/Adjustments"
+label = "Curves..."
+shortcut = "Ctrl+M"
+
+[[item]]
+id = "image.adjust.hue_saturation"
+menu = "Image/Adjustments"
+label = "Hue/Saturation..."
+shortcut = "Ctrl+U"
+
+[[item]]
+id = "image.adjust.brightness_contrast"
+menu = "Image/Adjustments"
+label = "Brightness/Contrast..."
+
+[[item]]
+id = "image.adjust.invert"
+menu = "Image/Adjustments"
+label = "Invert"
+shortcut = "Ctrl+I"
+
+[[item]]
+id = "image.adjust.threshold"
+menu = "Image/Adjustments"
+label = "Threshold..."
+
+[[item]]
+id = "image.adjust.posterize"
+menu = "Image/Adjustments"
+label = "Posterize..."
+
+[[item]]
+id = "image.image_size"
+menu = "Image"
+label = "Image Size..."
+shortcut = "Ctrl+Alt+I"
+
+[[item]]
+id = "image.canvas_size"
+menu = "Image"
+label = "Canvas Size..."
+shortcut = "Ctrl+Alt+C"
+
+[[item]]
+id = "image.rotate.cw90"
+menu = "Image/Rotate Canvas"
+label = "90° Clockwise"
+
+[[item]]
+id = "image.flip.horizontal"
+menu = "Image/Rotate Canvas"
+label = "Flip Horizontal"
+
+# ---------------- Layer ----------------
+[[item]]
+id = "layer.new"
+menu = "Layer/New"
+label = "Layer"
+shortcut = "Ctrl+Shift+N"
+
+[[item]]
+id = "layer.duplicate"
+menu = "Layer"
+label = "Duplicate Layer"
+shortcut = "Ctrl+J"
+
+[[item]]
+id = "layer.delete"
+menu = "Layer"
+label = "Delete Layer"
+
+[[item]]
+id = "layer.merge_down"
+menu = "Layer"
+label = "Merge Down"
+shortcut = "Ctrl+E"
+
+[[item]]
+id = "layer.flatten"
+menu = "Layer"
+label = "Flatten Image"
+
+[[item]]
+id = "layer.mask.add"
+menu = "Layer/Layer Mask"
+label = "Reveal All"
+
+[[item]]
+id = "layer.clipping_mask.create"
+menu = "Layer"
+label = "Create Clipping Mask"
+shortcut = "Ctrl+Alt+G"
+
+# ---------------- Select ----------------
+[[item]]
+id = "select.all"
+menu = "Select"
+label = "All"
+shortcut = "Ctrl+A"
+
+[[item]]
+id = "select.deselect"
+menu = "Select"
+label = "Deselect"
+shortcut = "Ctrl+D"
+
+[[item]]
+id = "select.inverse"
+menu = "Select"
+label = "Inverse"
+shortcut = "Ctrl+Shift+I"
+
+[[item]]
+id = "select.color_range"
+menu = "Select"
+label = "Color Range..."
+
+# ---------------- Filter ----------------
+[[item]]
+id = "filter.blur.gaussian"
+menu = "Filter/Blur"
+label = "Gaussian Blur..."
+
+[[item]]
+id = "filter.blur.box"
+menu = "Filter/Blur"
+label = "Box Blur..."
+
+[[item]]
+id = "filter.blur.motion"
+menu = "Filter/Blur"
+label = "Motion Blur..."
+
+[[item]]
+id = "filter.sharpen.unsharp_mask"
+menu = "Filter/Sharpen"
+label = "Unsharp Mask..."
+
+[[item]]
+id = "filter.noise.add"
+menu = "Filter/Noise"
+label = "Add Noise..."
+
+[[item]]
+id = "filter.noise.median"
+menu = "Filter/Noise"
+label = "Median..."
+
+[[item]]
+id = "filter.other.high_pass"
+menu = "Filter/Other"
+label = "High Pass..."
+
+[[item]]
+id = "filter.stylize.emboss"
+menu = "Filter/Stylize"
+label = "Emboss..."
+
+[[item]]
+id = "filter.pixelate.mosaic"
+menu = "Filter/Pixelate"
+label = "Mosaic..."
+
+# ---------------- View ----------------
+[[item]]
+id = "view.zoom_in"
+menu = "View"
+label = "Zoom In"
+shortcut = "Ctrl+="
+
+[[item]]
+id = "view.zoom_out"
+menu = "View"
+label = "Zoom Out"
+shortcut = "Ctrl+-"
+
+[[item]]
+id = "view.fit_on_screen"
+menu = "View"
+label = "Fit on Screen"
+shortcut = "Ctrl+0"
+
+# ---------------- Tools (toolbar, no menu) ----------------
+[[item]]
+id = "tool.move"
+kind = "tool"
+label = "Move Tool"
+shortcut = "V"
+
+[[item]]
+id = "tool.marquee.rect"
+kind = "tool"
+label = "Rectangular Marquee Tool"
+shortcut = "M"
+
+[[item]]
+id = "tool.brush"
+kind = "tool"
+label = "Brush Tool"
+shortcut = "B"
+
+[[item]]
+id = "tool.eraser"
+kind = "tool"
+label = "Eraser Tool"
+shortcut = "E"
+
+# ---------------- File formats ----------------
+[[item]]
+id = "format.png"
+kind = "format"
+label = "PNG (read and write)"
+
+[[item]]
+id = "format.jpeg"
+kind = "format"
+label = "JPEG (read and write)"
+
+[[item]]
+id = "format.psd.read"
+kind = "format"
+label = "PSD (read)"

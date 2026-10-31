@@ -1,0 +1,22 @@
+# Every workspace crate and its layer. A crate may depend only on crates in a
+# LOWER layer (or on standalone L0 crates). `cargo xtask layers` enforces this.
+#
+#   L0  foundation: document model, catalog, pure algorithms, file-format parsers
+#   L1  (reserved) document operations
+#   L2  (reserved) image algorithms: filters, adjustments
+#   L3  (reserved) render: compositor, blend modes
+#   L4  (reserved) I/O: open and save
+#   L5  engine: command registry, history, commands
+#   L6  app: GUI, canvas, platform glue. ONLY L6 may use GUI crates.
+#
+# Adding a crate: add a line here in the same PR (the check fails otherwise).
+
+[layers]
+editor-doc = 0
+editor-catalog = 0
+editor-engine = 5
+editor-app = 6
+
+# Crates that only layer 6 may depend on.
+[gui_only]
+crates = ["eframe", "egui", "egui-winit", "egui-wgpu", "egui_glow", "winit", "wgpu", "rfd"]
