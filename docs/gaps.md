@@ -1,39 +1,57 @@
 # Gaps: the ranked work queue
 
-Status: replace this line, don't append to it · Last updated: (date)
+Status: replace this line, don't append to it · Last updated: 2026-10-31 (M0+M1 plan)
 
 Agents pick the highest-ranked entry nobody holds (create a Backlog.md task
 for it first). When you close part of a gap, update its Done/Evidence lines.
 Every number here is *estimated* unless it links to a generated file.
 
 ## G1. Agents can't see the UI
-Missing:  offscreen snapshot (render the app to PNG without a window, e.g. egui_kittest); `--snapshot out.png` flag
+Missing:  offscreen snapshot (render the app to PNG without a window, egui_kittest); `--snapshot out.png` flag
 Evidence: AGENTS.md rule 6 is a stopgap
 Impact:   every UI task; blocks agents from checking their own work
-Human:    none
+Tasks:    TASK-1 (ADR-008)
+Human:    owner accepts ADR-008; later, optionally approves a CI change so snapshot tests also run on CI
 
 ## G2. No agent control channel
-Missing:  a way for agents to drive the running app and inspect the document as JSON (CLI first, MCP server later)
+Missing:  a way for agents to drive the engine and inspect the document as JSON (CLI first, MCP server in M2)
 Impact:   end-to-end testing by agents
-Human:    none
+Tasks:    TASK-2 (state JSON), TASK-3 (CLI), TASK-26 (CLI open/render) (ADR-007)
+Human:    owner accepts ADR-007
 
 ## G3. Commands can't take parameters from the UI
-Missing:  dialogs generated from `CommandSpec::params`; keyboard shortcuts from catalog
+Missing:  typed parameter specs; dialogs generated from them; keyboard shortcuts from catalog
 Impact:   every adjustment and filter with settings
+Tasks:    TASK-8 (ParamSpec), TASK-21 (dialogs), TASK-20 (shortcuts)
 Human:    owner approves the dialog look once (design track)
 
 ## G4. No real compositor
-Missing:  `editor-render` crate: blend modes, opacity/fill, masks, groups, tiling
+Missing:  `editor-render` crate: tiles, blend modes, opacity/fill, masks, groups, tile cache
 Partial:  Normal blend placeholder in `crates/editor-engine/src/preview.rs`
 Impact:   correctness of everything shown on screen
-Human:    owner approves pixel-format ADR (straight vs premultiplied, 8/16-bit)
+Tasks:    TASK-12 (Normal, tiles), TASK-14/15/16 (blend modes), TASK-13 (measurements). Masks, groups, cache: M2
+Human:    owner accepts ADR-002, ADR-003, ADR-005; TASK-13 needs a browser session with the reference app
 
 ## G5. No file I/O
-Missing:  open/save PNG and JPEG; then PSD reading with the embedded composite as an oracle
+Missing:  open/save PNG (M1); JPEG, PSD read with the embedded composite as an oracle, PSD write (M2)
 Impact:   the editor is unusable without it
-Human:    owner provides sample PSDs saved by real Photoshop
+Tasks:    TASK-18 (PNG codec), TASK-19 (New/Open/Export commands) (ADR-010)
+Human:    owner provides sample PSDs saved by the reference app (needed in M2)
 
-## G6. Catalog is a seed
-Missing:  the full target list (expect several hundred entries)
-Impact:   honest progress numbers; parallel work supply
-Human:    owner reviews the menu outline once
+## G6. Document model and history don't scale
+Missing:  tiled copy-on-write layers, stable layer ids, memory-budget history with timestamps
+Evidence: today undo keeps 50 full document copies (`crates/editor-engine/src/lib.rs`)
+Impact:   the 6000×4000, 20-layer speed and memory targets in the M2 gate
+Tasks:    TASK-9, TASK-10, TASK-11, TASK-17 (ADR-004, ADR-006)
+Human:    owner accepts ADR-004 and ADR-006
+
+## G7. Non-edit features can't be commands
+Missing:  command effects (edit / session / read-only / replace) and session state (view, colors, tool)
+Impact:   zoom, colors, tools, open and export can't be live or reachable by agents
+Tasks:    TASK-7 (ADR-009), TASK-22 (canvas zoom/pan)
+Human:    owner accepts ADR-009
+
+## G8. Catalog needs the owner's review
+Done:     2026-10-31: expanded from 52 seed entries to the full target list (see `docs/generated/coverage.md`)
+Missing:  owner review of the menu outline (labels, grouping, anything missing or unwanted)
+Human:    owner reviews `catalog/catalog.toml` once

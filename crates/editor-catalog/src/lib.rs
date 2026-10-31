@@ -66,6 +66,77 @@ mod tests {
         assert!(!entries.is_empty());
     }
 
+    /// AGENTS.md rule 10: other products' names never appear in UI text.
+    #[test]
+    fn labels_never_name_other_products() {
+        const BANNED: &[&str] = &[
+            "photoshop",
+            "photopea",
+            "adobe",
+            "gimp",
+            "krita",
+            "affinity",
+            "lightroom",
+            "pixelmator",
+            "paint.net",
+            "corel",
+        ];
+        for e in load().unwrap() {
+            let label = e.label.to_lowercase();
+            for name in BANNED {
+                assert!(!label.contains(name), "`{}` label names `{name}`", e.id);
+            }
+        }
+    }
+
+    /// Every kind is known; commands have a menu path, other kinds don't;
+    /// ids are lowercase dotted words.
+    #[test]
+    fn entries_are_well_formed() {
+        for e in load().unwrap() {
+            assert!(
+                ["command", "tool", "panel", "key", "format"].contains(&e.kind.as_str()),
+                "`{}` has unknown kind `{}`",
+                e.id,
+                e.kind
+            );
+            assert_eq!(
+                e.kind == "command",
+                !e.menu.is_empty(),
+                "`{}`: commands need a menu, other kinds must not have one",
+                e.id
+            );
+            let ok = e.id.split('.').count() >= 2
+                && e.id.split('.').all(|part| {
+                    !part.is_empty()
+                        && part
+                            .chars()
+                            .all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '_')
+                });
+            assert!(ok, "id `{}` is not lowercase dotted words", e.id);
+        }
+    }
+
+    /// A shortcut belongs to one entry, except that tools sharing a letter
+    /// form a flyout group. A tool letter may not be used by a non-tool.
+    #[test]
+    fn shortcuts_do_not_collide() {
+        let mut owners: std::collections::BTreeMap<String, Vec<Entry>> = Default::default();
+        for e in load().unwrap() {
+            if let Some(s) = &e.shortcut {
+                owners.entry(s.to_lowercase()).or_default().push(e.clone());
+            }
+        }
+        for (shortcut, entries) in owners {
+            let all_tools = entries.iter().all(|e| e.kind == "tool");
+            assert!(
+                entries.len() == 1 || all_tools,
+                "shortcut `{shortcut}` is used by {:?}",
+                entries.iter().map(|e| &e.id).collect::<Vec<_>>()
+            );
+        }
+    }
+
     #[test]
     fn duplicate_ids_are_rejected() {
         let text = "[[item]]\nid='a'\nlabel='A'\n[[item]]\nid='a'\nlabel='B'\n";

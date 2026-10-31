@@ -7,6 +7,7 @@ word differently.
 | --- | --- |
 | Catalog | `catalog/catalog.toml`: the full list of target features, each with a stable id |
 | Catalog id | A feature's permanent name, e.g. `filter.blur.gaussian`. Never renamed |
+| Catalog kind | What an entry is: `command` (menu item), `tool` (toolbar), `panel` (panel button or panel menu), `key` (keyboard only), `format` (file format) |
 | Live | A catalog entry that has a registered command with the same id |
 | Command | One user action, registered as a `CommandSpec`; runs through `Engine::execute` and records one undo step |
 | Gate | `cargo xtask ci`: the checks every change must pass |
