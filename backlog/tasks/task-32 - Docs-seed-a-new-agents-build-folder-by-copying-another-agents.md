@@ -1,11 +1,11 @@
 ---
 id: TASK-32
 title: 'Docs: seed a new agent''s build folder by copying another agent''s'
-status: In Progress
+status: Done
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T04:14:00Z'
-updated_date: '2026-11-01T04:16:00Z'
+updated_date: '2026-11-01T04:20:00Z'
 labels:
   - track:design
   - agent:opus
@@ -34,6 +34,8 @@ With one build folder per agent (TASK-30), each new agent still compiles all lib
 
 <!-- SECTION:NOTES:BEGIN -->
 Measured 2026-10-31 on btrfs: cp -r copy then gate = 201 s (everything rebuilt: timestamps reset); cp -a --reflink=auto copy = 1 s for 4.3 GB, no extra disk; gate in a brand-new worktree using the seeded folder = 19-20 s (only the workspace crates rebuilt). Cold gate for comparison: 246 s.
+
+Owner approved merge 2026-10-31.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary
