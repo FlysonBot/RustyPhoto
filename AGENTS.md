@@ -85,7 +85,7 @@ plan approval; catalog-track tasks proceed.
 | You added a command | `cargo xtask catalog`, commit `docs/generated/coverage.md`, raise `catalog/floor.txt` to the new live count |
 | You moved a file | Fix every doc that mentions it (`cargo xtask docpaths` finds them) |
 | You closed part of a gap | Update its entry in `docs/gaps.md` (evidence, date) |
-| Always | Write the task's final summary; open a PR with the template |
+| Always | Write the task's final summary, set it In Review; open a PR with the template |
 
 "Done" means: command + UI + tests, gate green. Never claim done otherwise.
 
