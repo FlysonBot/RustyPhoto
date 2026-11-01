@@ -8,8 +8,9 @@ Read AGENTS.md. Your agent name is NAME. Work on TASK-ID only.
 
 1. Read the task with the backlog CLI, and everything it links to.
    Assign it to yourself and set it In Progress.
-2. Create a git worktree and branch for it (AGENTS.md section 6), and use
-   CARGO_TARGET_DIR=target/agent-NAME.
+2. Create a git worktree and branch for it, and use the build folder
+   `<main checkout>/target/agent-NAME`, shared by all your worktrees
+   (both: AGENTS.md section 6).
 3. Write your implementation plan into the task. If the task is
    track:design, stop and wait for my approval of the plan. Otherwise go on.
 4. Implement it, touching only the task's "Files allowed". If you need
