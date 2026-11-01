@@ -8,11 +8,11 @@ Every number here is *estimated* unless it links to a generated file.
 
 ## G1. Agents can't see the UI
 Done:     `--snapshot out.png --size WxH` flag and snapshot tests (egui_kittest), TASK-1, 2026-10-31
-Missing:  snapshot tests run on CI (they skip there: no GPU or software renderer on the runner)
+Done:     snapshot tests run on CI on every OS (Linux via Mesa's software renderer), TASK-29, 2026-10-31
 Evidence: `crates/editor-app/tests/snapshot.rs`, `docs/recipes/check-ui.md`
 Impact:   every UI task; blocks agents from checking their own work
-Tasks:    TASK-1 (ADR-008)
-Human:    ADR-008 accepted 2026-10-31; later, optionally approves a CI change so snapshot tests also run on CI
+Tasks:    TASK-1, TASK-29 (ADR-008)
+Human:    ADR-008 accepted 2026-10-31; CI change approved 2026-10-31
 
 ## G2. No agent control channel
 Missing:  a way for agents to drive the engine and inspect the document as JSON (CLI first, MCP server in M2)

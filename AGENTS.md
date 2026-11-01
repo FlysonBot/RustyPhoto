@@ -54,7 +54,7 @@ Each rule says what to do instead and how it is checked.
    owner's approval in the task. If a check is wrong, say so in the task.
 6. **Look at UI changes.** Take a snapshot, look at it, and attach it to
    the PR (`docs/recipes/check-ui.md`). *Checked by:* snapshot tests in
-   `crates/editor-app/tests/snapshot.rs` (skipped where no GPU adapter exists).
+   `crates/editor-app/tests/snapshot.rs`, run by CI on every OS.
 7. **No OS-specific code** outside a future `platform` crate.
 8. **Clean room.** Learn behavior only from outputs, published specs, papers
    and permissively licensed code (MIT, BSD, Apache). Never GPL code. Log

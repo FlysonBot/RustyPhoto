@@ -6,4 +6,4 @@
 4. **A test failed?** Look at `<name>.new.png` (what the app draws now) and `<name>.diff.png` next to the stored PNG.
 5. **Your task changes the UI on purpose?** `UPDATE_SNAPSHOTS=1 cargo test -p editor-app --test snapshot`, look at every updated PNG, and say so in the PR (rule 5: never update to hide a bug).
 6. **Test a new screen:** add a test in `crates/editor-app/tests/snapshot.rs`; click with `harness.get_by_label("File").click()`, then `harness.run()`.
-7. No GPU adapter (CI today): the tests print `SKIP` and pass; run them locally.
+7. CI runs them on every OS (Linux via a software renderer). A machine with no GPU adapter at all prints `SKIP` and passes; on Linux, install `mesa-vulkan-drivers`.
