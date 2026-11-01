@@ -52,8 +52,9 @@ Each rule says what to do instead and how it is checked.
 5. **Never weaken a check to pass it.** Don't edit expected test outputs,
    lower `catalog/floor.txt`, delete tests or add `#[allow]` without the
    owner's approval in the task. If a check is wrong, say so in the task.
-6. **Look at UI changes.** Until the snapshot tool exists (see `docs/gaps.md`),
-   describe UI changes precisely in the PR and ask the owner to check.
+6. **Look at UI changes.** Take a snapshot, look at it, and attach it to
+   the PR (`docs/recipes/check-ui.md`). *Checked by:* snapshot tests in
+   `crates/editor-app/tests/snapshot.rs` (skipped where no GPU adapter exists).
 7. **No OS-specific code** outside a future `platform` crate.
 8. **Clean room.** Learn behavior only from outputs, published specs, papers
    and permissively licensed code (MIT, BSD, Apache). Never GPL code. Log
