@@ -96,6 +96,11 @@ plan approval; catalog-track tasks proceed.
   `export CARGO_TARGET_DIR="$(git rev-parse --path-format=absolute --git-common-dir)/../target/agent-<name>"`
   (PowerShell: `$env:CARGO_TARGET_DIR = "$(git rev-parse --path-format=absolute --git-common-dir)/../target/agent-<name>"`).
   That is `<main checkout>/target/agent-<name>`, with your agent name in place of `<name>`.
+- Folder doesn't exist yet? Copy another agent's instead of compiling from
+  scratch (about 20 s instead of about 4 min). Keep file timestamps, or Cargo
+  rebuilds everything; copy only while that agent isn't building:
+  `cp -a --reflink=auto <main checkout>/target/agent-<other> <main checkout>/target/agent-<name>`
+  (Windows: `robocopy <from> <to> /E /DCOPY:T`, which keeps timestamps).
 - Work in your own git worktree and branch: `t<task-number>-<short-name>`.
 - New feature = new file. Never grow a shared file when a new module works.
 - Hot spots (re-read right before editing; keep edits to one line where possible):
