@@ -102,6 +102,9 @@ plan approval; catalog-track tasks proceed.
   `cp -a --reflink=auto <main checkout>/target/agent-<other> <main checkout>/target/agent-<name>`
   (Windows: `robocopy <from> <to> /E /DCOPY:T`, which keeps timestamps).
 - Work in your own git worktree and branch: `t<task-number>-<short-name>`.
+  Create it before you change any task: backlog commands that change a task
+  (claim, edit, create) write into the checkout they run in, so run them
+  inside your worktree, never in the main checkout. Reading tasks works anywhere.
 - New feature = new file. Never grow a shared file when a new module works.
 - Hot spots (re-read right before editing; keep edits to one line where possible):
   `crates/editor-engine/src/cmd/mod.rs` (the `command_specs` list), `catalog/catalog.toml`, `catalog/floor.txt`.
