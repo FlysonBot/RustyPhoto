@@ -18,8 +18,9 @@ Read AGENTS.md. Your agent name is NAME. Work on TASK-ID only.
    For a new command, follow docs/recipes/add-a-command.md exactly.
 5. Run `cargo xtask ci` until it passes. Never weaken a check (rule 5).
 6. Tick the acceptance criteria you met, write the final summary in the
-   task, push the branch and open a PR with the template. Fill in
-   "I'm not sure about" honestly.
+   task and set it In Review. Commit, push the branch and open a PR with
+   the template. Fill in "I'm not sure about" honestly. If review sends it
+   back, set it In Progress again until you push the fixes.
 7. Reply to me in plain English, 5 lines max: what you built, how it was
    verified, the PR link, and anything I should look at.
 
