@@ -23,7 +23,9 @@ pub struct Entry {
     /// Keyboard shortcut in the form `Ctrl+Shift+N`, if any.
     #[serde(default)]
     pub shortcut: Option<String>,
-    /// What kind of feature: `command` (default), `tool` or `format`.
+    /// What kind of feature: `command` (default, a menu item), `tool`
+    /// (toolbar), `panel` (panel button or panel menu), `key` (keyboard only)
+    /// or `format` (file format).
     #[serde(default = "default_kind")]
     pub kind: String,
 }
@@ -82,9 +84,14 @@ mod tests {
             "corel",
         ];
         for e in load().unwrap() {
-            let label = e.label.to_lowercase();
+            // Both are shown in the UI: the label, and the menu path.
+            let shown = format!("{} {}", e.label, e.menu).to_lowercase();
             for name in BANNED {
-                assert!(!label.contains(name), "`{}` label names `{name}`", e.id);
+                assert!(
+                    !shown.contains(name),
+                    "`{}` label or menu names `{name}`",
+                    e.id
+                );
             }
         }
     }
@@ -117,20 +124,46 @@ mod tests {
         }
     }
 
-    /// A shortcut belongs to one entry, except that tools sharing a letter
-    /// form a flyout group. A tool letter may not be used by a non-tool.
+    /// The same shortcut however it is written: modifiers sorted, lowercase.
+    /// `Shift+Ctrl+X` and `Ctrl+Shift+X` both become `ctrl+shift+x`.
+    fn normalize_shortcut(s: &str) -> String {
+        let lower = s.to_lowercase();
+        let parts: Vec<&str> = lower.split('+').collect();
+        let (key, modifiers) = match parts.split_last() {
+            Some((key, modifiers)) => (*key, modifiers),
+            None => return lower,
+        };
+        let mut modifiers = modifiers.to_vec();
+        modifiers.sort_unstable();
+        modifiers.push(key);
+        modifiers.join("+")
+    }
+
+    #[test]
+    fn shortcut_normalization_ignores_modifier_order() {
+        assert_eq!(normalize_shortcut("Shift+Ctrl+X"), "ctrl+shift+x");
+        assert_eq!(normalize_shortcut("Ctrl+Shift+X"), "ctrl+shift+x");
+        assert_eq!(normalize_shortcut("Ctrl+="), "ctrl+=");
+    }
+
+    /// A shortcut belongs to one entry, except that tools sharing a single
+    /// letter form a flyout group. A tool letter may not be used by a non-tool.
     #[test]
     fn shortcuts_do_not_collide() {
         let mut owners: std::collections::BTreeMap<String, Vec<Entry>> = Default::default();
         for e in load().unwrap() {
             if let Some(s) = &e.shortcut {
-                owners.entry(s.to_lowercase()).or_default().push(e.clone());
+                owners
+                    .entry(normalize_shortcut(s))
+                    .or_default()
+                    .push(e.clone());
             }
         }
         for (shortcut, entries) in owners {
             let all_tools = entries.iter().all(|e| e.kind == "tool");
+            let single_letter = shortcut.chars().count() == 1;
             assert!(
-                entries.len() == 1 || all_tools,
+                entries.len() == 1 || (all_tools && single_letter),
                 "shortcut `{shortcut}` is used by {:?}",
                 entries.iter().map(|e| &e.id).collect::<Vec<_>>()
             );

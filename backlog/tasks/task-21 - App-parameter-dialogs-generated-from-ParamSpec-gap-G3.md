@@ -4,6 +4,7 @@ title: 'App: parameter dialogs generated from ParamSpec (gap G3)'
 status: To Do
 assignee: []
 created_date: '2026-10-31T23:45:00Z'
+updated_date: '2026-11-01T01:04:00Z'
 labels:
   - track:design
   - agent:sonnet
@@ -27,7 +28,9 @@ Commands with settings run with defaults only. A dialog generated from each comm
 **Files allowed:**
 - `crates/editor-app/src/dialog.rs` (new)
 - `crates/editor-app/src/app.rs` (one call)
+- `crates/editor-app/src/lib.rs` (one `mod` line)
 - `crates/editor-app/Cargo.toml` (rfd)
+- `crates/editor-app/tests/dialog.rs` (new)
 
 Shared hot spots also allowed (AGENTS.md section 6: re-read first, one-line edits, regenerate on conflict): Cargo.lock; Cargo.toml ([workspace.dependencies] lines); catalog/floor.txt; crates/editor-engine/src/cmd/mod.rs (command_specs list); docs/gaps.md (own gap entry); docs/generated/coverage.md; docs/provenance-log.md (append); xtask/layers.toml ([layers] line).
 

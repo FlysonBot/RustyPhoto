@@ -28,9 +28,14 @@ document and history. `RunFn` receives a context giving access to what its
 effect allows (an `Edit` command can't touch the view; a `Session` command
 can't touch pixels).
 
-Which layer is active and which layers are selected are document state but
-are recorded as history steps only when the reference app does; the default
-is: selecting a layer is not a step.
+Which layer is active and which layers are selected live in the `Session`,
+not in the document, so selecting a layer is a `Session` command and never a
+history step. Layers are referred to by their permanent `LayerId`
+(ADR-006). After undo, redo or any command, the engine checks that the active
+layer still exists; if not, the topmost remaining layer becomes active. An
+`Edit` command reads the active layer from the session but cannot change it,
+except through its result (for example, Layer > New makes the new layer
+active).
 
 ## Consequences
 - `CommandSpec` and `RunFn` change once; every existing command is updated

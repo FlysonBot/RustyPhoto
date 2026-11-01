@@ -4,6 +4,7 @@ title: 'Catalog commands: select, show/hide and rename layers'
 status: To Do
 assignee: []
 created_date: '2026-10-31T23:45:00Z'
+updated_date: '2026-11-01T01:04:00Z'
 labels:
   - track:catalog
   - agent:gemini
@@ -35,7 +36,7 @@ Need another file? Stop and explain why in this task (docs/prompts/03-implement.
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `layer.select` makes a layer active (not a history step, per ADR-009)
+- [ ] #1 `layer.select` is a Session command that makes a layer active (never a history step, ADR-009)
 - [ ] #2 `layer.visibility.toggle` flips visibility (a history step); `layer.rename` sets the name (1..=255 chars)
 - [ ] #3 Each command: behavior test, undo test (where it is an Edit), bad-parameter test
 - [ ] #4 Coverage regenerated and floor raised; `cargo xtask ci` passes

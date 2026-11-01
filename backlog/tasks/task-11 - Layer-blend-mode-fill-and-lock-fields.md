@@ -4,7 +4,7 @@ title: Layer blend mode, fill and lock fields
 status: To Do
 assignee: []
 created_date: '2026-10-31T23:45:00Z'
-updated_date: '2026-10-31T23:45:00Z'
+updated_date: '2026-11-01T01:04:00Z'
 labels:
   - track:design
   - agent:sonnet
@@ -28,6 +28,7 @@ The compositor and the Layers panel need each layer's blend mode, fill and locks
 - `crates/editor-doc/src/layer.rs`
 - `crates/editor-doc/src/blend.rs` (new)
 - `crates/editor-engine/src/cmd/layer_props.rs` (new)
+- `crates/editor-doc/src/lib.rs` (one `pub mod` line)
 - `crates/editor-engine/src/state.rs`
 - `docs/specs/state-json.md`
 

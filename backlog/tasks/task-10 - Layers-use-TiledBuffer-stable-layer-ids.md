@@ -4,6 +4,7 @@ title: Layers use TiledBuffer; stable layer ids
 status: To Do
 assignee: []
 created_date: '2026-10-31T23:45:00Z'
+updated_date: '2026-11-01T01:04:00Z'
 labels:
   - track:design
   - agent:opus
@@ -32,6 +33,8 @@ Moves the document onto tiles (cheap undo, off-canvas pixels) and gives each lay
 - `crates/editor-engine/src/params.rs`
 - `crates/editor-engine/src/preview.rs`
 - `crates/editor-engine/src/state.rs`
+- `crates/editor-engine/src/session.rs`
+- `crates/editor-engine/src/lib.rs`
 - `crates/editor-engine/tests/panic_hunt.rs`
 - `crates/editor-app/src/canvas.rs`
 - `docs/specs/state-json.md`
@@ -45,8 +48,9 @@ Need another file? Stop and explain why in this task (docs/prompts/03-implement.
 <!-- AC:BEGIN -->
 - [ ] #1 `Layer` holds a `TiledBuffer` and a `LayerId` that never changes and is never reused within a document
 - [ ] #2 The `Layer` param kind accepts an id or an index; state JSON shows both
-- [ ] #3 Every existing command and test is migrated with identical results
-- [ ] #4 A 6000x4000 document with 20 layers: running Invert on one layer then cloning the document for history adds no more than that one layer's tiles (test checks `unique_bytes`)
-- [ ] #5 No code outside `editor-doc` indexes raw pixel vectors
-- [ ] #6 `cargo xtask ci` passes
+- [ ] #3 The active layer moves from `Document` to the `Session` as a `LayerId` (ADR-009); after undo, redo or any command a missing active layer falls back to the topmost layer (test covers deleting the active layer then undoing)
+- [ ] #4 Every existing command and test is migrated with identical results
+- [ ] #5 A 6000x4000 document with 20 layers: running Invert on one layer then cloning the document for history adds no more than that one layer's tiles (test checks `unique_bytes`)
+- [ ] #6 No code outside `editor-doc` indexes raw pixel vectors
+- [ ] #7 `cargo xtask ci` passes
 <!-- AC:END -->

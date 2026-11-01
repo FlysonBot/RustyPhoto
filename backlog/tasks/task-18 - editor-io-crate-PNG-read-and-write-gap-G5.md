@@ -4,6 +4,7 @@ title: 'editor-io crate: PNG read and write (gap G5)'
 status: To Do
 assignee: []
 created_date: '2026-10-31T23:45:00Z'
+updated_date: '2026-11-01T01:04:00Z'
 labels:
   - track:design
   - agent:sonnet
@@ -26,6 +27,7 @@ The editor can't open or save anything. PNG first (M1 gate); JPEG and PSD follow
 **Files allowed:**
 - `crates/editor-io/` (new crate)
 - `xtask/src/catalog.rs`
+- `xtask/Cargo.toml`
 - `tests/fixtures/png/` (new)
 
 Shared hot spots also allowed (AGENTS.md section 6: re-read first, one-line edits, regenerate on conflict): Cargo.lock; Cargo.toml ([workspace.dependencies] lines); catalog/floor.txt; crates/editor-engine/src/cmd/mod.rs (command_specs list); docs/gaps.md (own gap entry); docs/generated/coverage.md; docs/provenance-log.md (append); xtask/layers.toml ([layers] line).

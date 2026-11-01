@@ -31,8 +31,10 @@ Recommended: **option 3**, together with ADR-006's tiled layers.
   Undo/redo swap snapshots (constant time, well under 100 ms).
 - Memory used = bytes of all *distinct* tiles reachable from history but not
   from the current document. When it exceeds the budget, the oldest entries
-  are dropped until it fits, and the engine reports how many it dropped (the
-  app shows the notice).
+  are dropped one at a time, recounting after each, until it fits. Dropping an
+  entry whose tiles are still shared with a newer step frees nothing, so the
+  loop simply continues; at worst it drops every step except the current
+  document. The engine reports how many it dropped (the app shows the notice).
 - Budget default 2 GiB, set in Performance preferences, never below 64 MiB.
 - Commands keep today's contract: run on a copy, success records exactly one
   step, failure changes nothing. Session-only commands (ADR-009) record none.
