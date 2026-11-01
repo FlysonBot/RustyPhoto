@@ -7,8 +7,9 @@ for it first). When you close part of a gap, update its Done/Evidence lines.
 Every number here is *estimated* unless it links to a generated file.
 
 ## G1. Agents can't see the UI
-Missing:  offscreen snapshot (render the app to PNG without a window, egui_kittest); `--snapshot out.png` flag
-Evidence: AGENTS.md rule 6 is a stopgap
+Done:     `--snapshot out.png --size WxH` flag and snapshot tests (egui_kittest), TASK-1, 2026-10-31
+Missing:  snapshot tests run on CI (they skip there: no GPU or software renderer on the runner)
+Evidence: `crates/editor-app/tests/snapshot.rs`, `docs/recipes/check-ui.md`
 Impact:   every UI task; blocks agents from checking their own work
 Tasks:    TASK-1 (ADR-008)
 Human:    ADR-008 accepted 2026-10-31; later, optionally approves a CI change so snapshot tests also run on CI

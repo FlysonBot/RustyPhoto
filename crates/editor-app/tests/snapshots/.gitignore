@@ -1,0 +1,4 @@
+# Written by failing snapshot tests; never commit.
+*.new.png
+*.diff.png
+*.old.png
