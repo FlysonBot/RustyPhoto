@@ -1,6 +1,6 @@
 # ADR-005: Compositor design
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 The compositor turns the layer stack into the picture on screen and in

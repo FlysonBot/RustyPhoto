@@ -1,6 +1,6 @@
 # ADR-008: UI snapshots for agents
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 Agents can't see the app (gap G1), so today every UI change waits for the

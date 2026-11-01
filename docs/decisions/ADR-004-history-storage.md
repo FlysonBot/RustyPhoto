@@ -1,6 +1,6 @@
 # ADR-004: History (undo) storage
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 The vision asks for unlimited history steps inside a memory budget

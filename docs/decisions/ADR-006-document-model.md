@@ -1,6 +1,6 @@
 # ADR-006: Document model
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 Today a document is a flat list of canvas-sized layers, each a `Vec` of

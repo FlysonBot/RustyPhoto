@@ -36,7 +36,7 @@ Planned crates (added by tasks, each with a line in `xtask/layers.toml`):
 | `editor-algo` | L2 | Filters and adjustments math | M2 |
 | `editor-platform` | L6 | OS-specific code | later |
 
-## Agreed next steps (M1; all ADRs are Proposed until the owner accepts them)
+## Agreed next steps (M1; ADRs accepted by the owner 2026-10-31)
 
 - **Pixels** (ADR-002, ADR-003): straight-alpha RGBA, 8 bits, sRGB in the
   document; premultiplied `f32` only inside the compositor.

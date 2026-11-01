@@ -1,6 +1,6 @@
 # ADR-007: Agent control channel
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 Agents building this app need to drive it and inspect results without a

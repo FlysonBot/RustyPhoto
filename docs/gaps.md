@@ -11,13 +11,13 @@ Missing:  offscreen snapshot (render the app to PNG without a window, egui_kitte
 Evidence: AGENTS.md rule 6 is a stopgap
 Impact:   every UI task; blocks agents from checking their own work
 Tasks:    TASK-1 (ADR-008)
-Human:    owner accepts ADR-008; later, optionally approves a CI change so snapshot tests also run on CI
+Human:    ADR-008 accepted 2026-10-31; later, optionally approves a CI change so snapshot tests also run on CI
 
 ## G2. No agent control channel
 Missing:  a way for agents to drive the engine and inspect the document as JSON (CLI first, MCP server in M2)
 Impact:   end-to-end testing by agents
 Tasks:    TASK-2 (state JSON), TASK-3 (CLI), TASK-26 (CLI open/render) (ADR-007)
-Human:    owner accepts ADR-007
+Human:    none (ADR-007 accepted 2026-10-31)
 
 ## G3. Commands can't take parameters from the UI
 Missing:  typed parameter specs; dialogs generated from them; keyboard shortcuts from catalog
@@ -30,7 +30,7 @@ Missing:  `editor-render` crate: tiles, blend modes, opacity/fill, masks, groups
 Partial:  Normal blend placeholder in `crates/editor-engine/src/preview.rs`
 Impact:   correctness of everything shown on screen
 Tasks:    TASK-12 (Normal, tiles), TASK-14/15/16 (blend modes), TASK-13 (measurements). Masks, groups, cache: M2
-Human:    owner accepts ADR-002, ADR-003, ADR-005; TASK-13 needs a browser session with the reference app
+Human:    ADRs accepted 2026-10-31; TASK-13 needs a browser session with the reference app
 
 ## G5. No file I/O
 Missing:  open/save PNG (M1); JPEG, PSD read with the embedded composite as an oracle, PSD write (M2)
@@ -43,15 +43,15 @@ Missing:  tiled copy-on-write layers, stable layer ids, memory-budget history wi
 Evidence: today undo keeps 50 full document copies (`crates/editor-engine/src/lib.rs`)
 Impact:   the 6000×4000, 20-layer speed and memory targets in the M2 gate
 Tasks:    TASK-9, TASK-10, TASK-11, TASK-17 (ADR-004, ADR-006)
-Human:    owner accepts ADR-004 and ADR-006
+Human:    none (ADR-004, ADR-006 accepted 2026-10-31)
 
 ## G7. Non-edit features can't be commands
 Missing:  command effects (edit / session / read-only / replace) and session state (view, colors, tool)
 Impact:   zoom, colors, tools, open and export can't be live or reachable by agents
 Tasks:    TASK-7 (ADR-009), TASK-22 (canvas zoom/pan)
-Human:    owner accepts ADR-009
+Human:    none (ADR-009 accepted 2026-10-31)
 
 ## G8. Catalog needs the owner's review
 Done:     2026-10-31: expanded from 52 seed entries to the full target list (see `docs/generated/coverage.md`)
-Missing:  owner review of the menu outline (labels, grouping, anything missing or unwanted)
-Human:    owner reviews `catalog/catalog.toml` once
+Done:     2026-10-31: owner approved the outline
+Missing:  nothing; close this entry at the next gaps rewrite

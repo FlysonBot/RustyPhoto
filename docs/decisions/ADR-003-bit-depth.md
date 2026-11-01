@@ -1,6 +1,6 @@
 # ADR-003: Bit depth
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 The vision rules out 16-bit color and CMYK for M2, but a professional editor

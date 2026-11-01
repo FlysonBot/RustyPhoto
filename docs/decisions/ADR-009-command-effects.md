@@ -1,6 +1,6 @@
 # ADR-009: Command effects and session state
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 Every command today edits the document and records one undo step. But many

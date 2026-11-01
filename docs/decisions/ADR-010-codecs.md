@@ -1,6 +1,6 @@
 # ADR-010: Image codec libraries
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 M1 needs to open and save PNG; M2 adds JPEG and PSD. Writing PNG and JPEG

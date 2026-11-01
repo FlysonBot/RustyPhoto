@@ -1,6 +1,6 @@
 # ADR-002: Pixel format and alpha
 
-Status: Proposed (2026-10-31, architect)
+Status: Accepted (2026-10-31, by owner)
 
 ## Context
 Every pixel in the document needs one agreed layout. The choice decides how
