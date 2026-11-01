@@ -5,7 +5,9 @@
 //! Tolerance: a pixel "differs" when its color distance is over 0.6
 //! (egui_kittest's per-pixel threshold, weighted YIQ distance; absorbs
 //! anti-aliasing differences between GPUs and drivers). A test fails when
-//! more than 0.1% of the image's pixels differ.
+//! more than MAX_FAILED_PIXELS (10) pixels differ. Measured 2026-10-31 on
+//! Intel Iris Plus, Linux: 0 pixels differ on both Vulkan and OpenGL, so
+//! 10 is only a small margin; a wrong icon or a moved 1px line is far more.
 //!
 //! The right end of the status bar ("N of M catalog features live") is
 //! masked before comparing, because that count changes with every new
@@ -21,6 +23,8 @@ use std::io::Write;
 
 const WIDTH: u32 = 1200;
 const HEIGHT: u32 = 800;
+/// Pixels allowed past the per-pixel threshold (see the top of this file).
+const MAX_FAILED_PIXELS: usize = 10;
 /// Status-bar area hidden before comparing: bottom-right corner.
 const MASK_W: u32 = 400;
 const MASK_H: u32 = 26;
@@ -54,10 +58,9 @@ fn check(harness: &mut AppHarness, name: &str) -> Result<(), String> {
             image.put_pixel(x, y, background);
         }
     }
-    let max_failed = (w as usize * h as usize) / 1000;
     let options = SnapshotOptions::new()
         .threshold(0.6)
-        .max_failed_pixels(max_failed);
+        .max_failed_pixels(MAX_FAILED_PIXELS);
     try_image_snapshot_options(&image, name, &options).map_err(|e| e.to_string())
 }
 

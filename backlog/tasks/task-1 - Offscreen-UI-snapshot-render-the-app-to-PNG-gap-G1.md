@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@opus-1'
 created_date: '2026-10-31T23:45:00Z'
-updated_date: '2026-11-01T02:08:00Z'
+updated_date: '2026-11-01T02:53:00Z'
 labels:
   - track:design
   - agent:opus
@@ -100,6 +100,8 @@ Implementation notes (opus-1):
 - No catalog changes (no command added), so coverage/floor unchanged.
 
 Cross-family review (Gemini via agy, 2026-10-31): fixed (1) flag without a value (--snapshot / --size) now exits 2 instead of opening the window or silently using defaults; (2) harness()/write_png() reject zero or oversized sizes themselves; (3) snapshot tests skip only on NoGpu, other errors fail. Dropped as not real: 'baseline PNGs missing' (they are committed, just excluded from the reviewed diff); negative canvas scale (sizes 1x1, 50x20, 1x800 render fine in a debug build); mask colour sampling (deterministic, applied identically to stored and new image); live_count per-frame cost (pre-existing, ~600 lookups).
+
+Owner review 2026-10-31: tolerance tightened from 0.1% of pixels (960) to 10 pixels (threshold 0.6 unchanged). Measured 0 differing pixels between Vulkan and OpenGL on Intel Iris Plus. Not measured on Windows/macOS: their main-branch CI runners may have an adapter, so the tests may run there for the first time after merge.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary
