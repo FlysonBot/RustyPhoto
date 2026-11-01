@@ -5,6 +5,7 @@ status: In Progress
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T03:06:00Z'
+updated_date: '2026-11-01T03:12:00Z'
 labels:
   - track:design
   - agent:opus
@@ -33,11 +34,11 @@ Snapshot tests (TASK-1) skip on PRs because the ubuntu-latest runner has no GPU 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 On PRs the Linux CI job runs both snapshot tests (no SKIP line in the log) and they pass
+- [x] #1 On PRs the Linux CI job runs both snapshot tests (no SKIP line in the log) and they pass
 - [ ] #2 Windows and macOS jobs on main are unchanged
-- [ ] #3 Stored PNGs are not regenerated to make CI pass; any tolerance change is measured and documented
-- [ ] #4 check-ui.md, gaps.md G1 and AGENTS.md rule 6 no longer say CI skips the tests
-- [ ] #5 cargo xtask ci passes locally and on the PR
+- [x] #3 Stored PNGs are not regenerated to make CI pass; any tolerance change is measured and documented
+- [x] #4 check-ui.md, gaps.md G1 and AGENTS.md rule 6 no longer say CI skips the tests
+- [x] #5 cargo xtask ci passes locally and on the PR
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -48,3 +49,15 @@ Snapshot tests (TASK-1) skip on PRs because the ubuntu-latest runner has no GPU 
 3. Update check-ui.md, gaps.md G1, AGENTS.md rule 6.
 4. PR with template.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+PR #5 CI run 41268101114: mesa-vulkan-drivers 25.2.8 installed; 'test startup ... ok' and 'test file_menu_open ... ok' with no SKIP line, stored PNGs unchanged, tolerance unchanged (10 px). AC2 (Windows/macOS unchanged) is checked after merge on the main run; the new step has if: runner.os == 'Linux'. Install step adds ~15s per Linux run.
+<!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+CI now installs Mesa's software Vulkan driver (lavapipe) on the Linux runner, so UI snapshot tests run on every PR instead of skipping. Verified on PR #5: both snapshot tests ran and passed within the existing 10-pixel tolerance; no PNG or tolerance changes. Docs (check-ui.md, gaps.md G1, AGENTS.md rule 6) updated. Windows/macOS untouched (step is Linux-only).
+<!-- SECTION:FINAL_SUMMARY:END -->
