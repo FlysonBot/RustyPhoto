@@ -7,10 +7,16 @@
 #
 # Rules:
 # - Ids never change once used. Format: area.group.name, lowercase, dots.
-# - Product names of other software never appear in labels.
+#   Labels and shortcuts may change; ids may not.
+# - Product names of other software never appear in labels (a test checks).
 # - App-shell actions (undo, redo, quit) are built into the app, not listed here.
-# - This seed list is a starting point. The architect's first session
-#   expands it to the full target (expect several hundred entries).
+# - Entries appear in menus in file order.
+# - `kind`: command (default, has a `menu`), tool (toolbar), panel (a panel
+#   button or panel-menu action), key (keyboard only), format (file format).
+# - Shortcuts use `Ctrl` (shown as Cmd on macOS). A shortcut belongs to one
+#   entry only, except tools: tools sharing a letter form one flyout group.
+# - Adding, removing or regrouping entries is the architect's job.
+
 
 # ---------------- File ----------------
 [[item]]
@@ -26,6 +32,38 @@ label = "Open..."
 shortcut = "Ctrl+O"
 
 [[item]]
+id = "file.open_recent.clear"
+menu = "File/Open Recent"
+label = "Clear Recent File List"
+
+[[item]]
+id = "file.place.embedded"
+menu = "File"
+label = "Place Embedded..."
+
+[[item]]
+id = "file.place.linked"
+menu = "File"
+label = "Place Linked..."
+
+[[item]]
+id = "file.close"
+menu = "File"
+label = "Close"
+shortcut = "Ctrl+W"
+
+[[item]]
+id = "file.close_all"
+menu = "File"
+label = "Close All"
+shortcut = "Ctrl+Alt+W"
+
+[[item]]
+id = "file.close_others"
+menu = "File"
+label = "Close Others"
+
+[[item]]
 id = "file.save"
 menu = "File"
 label = "Save"
@@ -38,6 +76,18 @@ label = "Save As..."
 shortcut = "Ctrl+Shift+S"
 
 [[item]]
+id = "file.save_copy"
+menu = "File"
+label = "Save a Copy..."
+shortcut = "Ctrl+Alt+S"
+
+[[item]]
+id = "file.revert"
+menu = "File"
+label = "Revert"
+shortcut = "F12"
+
+[[item]]
 id = "file.export.png"
 menu = "File/Export"
 label = "PNG..."
@@ -47,7 +97,118 @@ id = "file.export.jpeg"
 menu = "File/Export"
 label = "JPEG..."
 
-# ---------------- Edit ----------------
+[[item]]
+id = "file.export.webp"
+menu = "File/Export"
+label = "WebP..."
+
+[[item]]
+id = "file.export.gif"
+menu = "File/Export"
+label = "GIF..."
+
+[[item]]
+id = "file.export.tiff"
+menu = "File/Export"
+label = "TIFF..."
+
+[[item]]
+id = "file.export.bmp"
+menu = "File/Export"
+label = "BMP..."
+
+[[item]]
+id = "file.export.avif"
+menu = "File/Export"
+label = "AVIF..."
+
+[[item]]
+id = "file.export.pdf"
+menu = "File/Export"
+label = "PDF..."
+
+[[item]]
+id = "file.export.quick_png"
+menu = "File/Export"
+label = "Quick Export as PNG"
+
+[[item]]
+id = "file.export.as"
+menu = "File/Export"
+label = "Export As..."
+shortcut = "Ctrl+Alt+Shift+W"
+
+[[item]]
+id = "file.export.layers_to_files"
+menu = "File/Export"
+label = "Layers to Files..."
+
+[[item]]
+id = "file.automate.batch"
+menu = "File/Automate"
+label = "Batch..."
+
+[[item]]
+id = "file.automate.contact_sheet"
+menu = "File/Automate"
+label = "Contact Sheet..."
+
+[[item]]
+id = "file.automate.panorama"
+menu = "File/Automate"
+label = "Panorama..."
+
+[[item]]
+id = "file.automate.crop_straighten"
+menu = "File/Automate"
+label = "Crop and Straighten Photos"
+
+[[item]]
+id = "file.automate.fit_image"
+menu = "File/Automate"
+label = "Fit Image..."
+
+[[item]]
+id = "file.scripts.load_into_stack"
+menu = "File/Scripts"
+label = "Load Files into Stack..."
+
+[[item]]
+id = "file.scripts.image_processor"
+menu = "File/Scripts"
+label = "Image Processor..."
+
+[[item]]
+id = "file.scripts.run"
+menu = "File/Scripts"
+label = "Run Script..."
+
+[[item]]
+id = "file.file_info"
+menu = "File"
+label = "File Info..."
+shortcut = "Ctrl+Alt+Shift+I"
+
+[[item]]
+id = "file.print"
+menu = "File"
+label = "Print..."
+shortcut = "Ctrl+P"
+
+[[item]]
+id = "file.print_one_copy"
+menu = "File"
+label = "Print One Copy"
+shortcut = "Ctrl+Alt+Shift+P"
+
+
+# ---------------- Edit (Undo and Redo are built into the app shell) ----------------
+[[item]]
+id = "edit.fade"
+menu = "Edit"
+label = "Fade..."
+shortcut = "Ctrl+Shift+F"
+
 [[item]]
 id = "edit.cut"
 menu = "Edit"
@@ -61,15 +222,81 @@ label = "Copy"
 shortcut = "Ctrl+C"
 
 [[item]]
+id = "edit.copy_merged"
+menu = "Edit"
+label = "Copy Merged"
+shortcut = "Ctrl+Shift+C"
+
+[[item]]
 id = "edit.paste"
 menu = "Edit"
 label = "Paste"
 shortcut = "Ctrl+V"
 
 [[item]]
+id = "edit.paste_special.in_place"
+menu = "Edit/Paste Special"
+label = "Paste in Place"
+shortcut = "Ctrl+Shift+V"
+
+[[item]]
+id = "edit.paste_special.into"
+menu = "Edit/Paste Special"
+label = "Paste Into"
+shortcut = "Ctrl+Alt+Shift+V"
+
+[[item]]
+id = "edit.paste_special.outside"
+menu = "Edit/Paste Special"
+label = "Paste Outside"
+
+[[item]]
+id = "edit.clear"
+menu = "Edit"
+label = "Clear"
+shortcut = "Delete"
+
+[[item]]
+id = "edit.check_spelling"
+menu = "Edit"
+label = "Check Spelling..."
+
+[[item]]
+id = "edit.find_replace_text"
+menu = "Edit"
+label = "Find and Replace Text..."
+
+[[item]]
 id = "edit.fill"
 menu = "Edit"
 label = "Fill..."
+shortcut = "Shift+F5"
+
+[[item]]
+id = "edit.stroke"
+menu = "Edit"
+label = "Stroke..."
+
+[[item]]
+id = "edit.content_fill"
+menu = "Edit"
+label = "Content Fill..."
+
+[[item]]
+id = "edit.content_scale"
+menu = "Edit"
+label = "Content-Preserving Scale"
+shortcut = "Ctrl+Alt+Shift+C"
+
+[[item]]
+id = "edit.puppet_warp"
+menu = "Edit"
+label = "Puppet Warp"
+
+[[item]]
+id = "edit.perspective_warp"
+menu = "Edit"
+label = "Perspective Warp"
 
 [[item]]
 id = "edit.transform.free"
@@ -77,7 +304,273 @@ menu = "Edit"
 label = "Free Transform"
 shortcut = "Ctrl+T"
 
+[[item]]
+id = "edit.transform.again"
+menu = "Edit/Transform"
+label = "Again"
+shortcut = "Ctrl+Shift+T"
+
+[[item]]
+id = "edit.transform.scale"
+menu = "Edit/Transform"
+label = "Scale"
+
+[[item]]
+id = "edit.transform.rotate"
+menu = "Edit/Transform"
+label = "Rotate"
+
+[[item]]
+id = "edit.transform.skew"
+menu = "Edit/Transform"
+label = "Skew"
+
+[[item]]
+id = "edit.transform.distort"
+menu = "Edit/Transform"
+label = "Distort"
+
+[[item]]
+id = "edit.transform.perspective"
+menu = "Edit/Transform"
+label = "Perspective"
+
+[[item]]
+id = "edit.transform.warp"
+menu = "Edit/Transform"
+label = "Warp"
+
+[[item]]
+id = "edit.transform.rotate_180"
+menu = "Edit/Transform"
+label = "Rotate 180°"
+
+[[item]]
+id = "edit.transform.rotate_cw90"
+menu = "Edit/Transform"
+label = "Rotate 90° Clockwise"
+
+[[item]]
+id = "edit.transform.rotate_ccw90"
+menu = "Edit/Transform"
+label = "Rotate 90° Counter Clockwise"
+
+[[item]]
+id = "edit.transform.flip_horizontal"
+menu = "Edit/Transform"
+label = "Flip Horizontal"
+
+[[item]]
+id = "edit.transform.flip_vertical"
+menu = "Edit/Transform"
+label = "Flip Vertical"
+
+[[item]]
+id = "edit.auto_align_layers"
+menu = "Edit"
+label = "Auto-Align Layers..."
+
+[[item]]
+id = "edit.auto_blend_layers"
+menu = "Edit"
+label = "Auto-Blend Layers..."
+
+[[item]]
+id = "edit.define_brush"
+menu = "Edit"
+label = "Define Brush Preset..."
+
+[[item]]
+id = "edit.define_pattern"
+menu = "Edit"
+label = "Define Pattern..."
+
+[[item]]
+id = "edit.define_shape"
+menu = "Edit"
+label = "Define Custom Shape..."
+
+[[item]]
+id = "edit.purge.history"
+menu = "Edit/Purge"
+label = "Histories"
+
+[[item]]
+id = "edit.purge.clipboard"
+menu = "Edit/Purge"
+label = "Clipboard"
+
+[[item]]
+id = "edit.purge.all"
+menu = "Edit/Purge"
+label = "All"
+
+[[item]]
+id = "edit.color_settings"
+menu = "Edit"
+label = "Color Settings..."
+shortcut = "Ctrl+Shift+K"
+
+[[item]]
+id = "edit.assign_profile"
+menu = "Edit"
+label = "Assign Profile..."
+
+[[item]]
+id = "edit.convert_to_profile"
+menu = "Edit"
+label = "Convert to Profile..."
+
+[[item]]
+id = "edit.presets.manager"
+menu = "Edit/Presets"
+label = "Preset Manager..."
+
+[[item]]
+id = "edit.presets.export_import"
+menu = "Edit/Presets"
+label = "Export/Import Presets..."
+
+[[item]]
+id = "edit.keyboard_shortcuts"
+menu = "Edit"
+label = "Keyboard Shortcuts..."
+shortcut = "Ctrl+Alt+Shift+K"
+
+[[item]]
+id = "edit.menus"
+menu = "Edit"
+label = "Menus..."
+shortcut = "Ctrl+Alt+Shift+M"
+
+[[item]]
+id = "edit.toolbar"
+menu = "Edit"
+label = "Toolbar..."
+
+[[item]]
+id = "edit.preferences.general"
+menu = "Edit/Preferences"
+label = "General..."
+shortcut = "Ctrl+K"
+
+[[item]]
+id = "edit.preferences.interface"
+menu = "Edit/Preferences"
+label = "Interface..."
+
+[[item]]
+id = "edit.preferences.performance"
+menu = "Edit/Preferences"
+label = "Performance and History..."
+
+[[item]]
+id = "edit.preferences.agent"
+menu = "Edit/Preferences"
+label = "Agent Connection..."
+
+[[item]]
+id = "edit.preferences.file_handling"
+menu = "Edit/Preferences"
+label = "File Handling..."
+
+[[item]]
+id = "edit.preferences.cursors"
+menu = "Edit/Preferences"
+label = "Cursors..."
+
+[[item]]
+id = "edit.preferences.transparency"
+menu = "Edit/Preferences"
+label = "Transparency and Gamut..."
+
+[[item]]
+id = "edit.preferences.units"
+menu = "Edit/Preferences"
+label = "Units and Rulers..."
+
+[[item]]
+id = "edit.preferences.guides"
+menu = "Edit/Preferences"
+label = "Guides, Grid and Slices..."
+
+[[item]]
+id = "edit.preferences.type"
+menu = "Edit/Preferences"
+label = "Type..."
+
+[[item]]
+id = "edit.preferences.reset"
+menu = "Edit/Preferences"
+label = "Reset Preferences..."
+
+
 # ---------------- Image ----------------
+[[item]]
+id = "image.mode.bitmap"
+menu = "Image/Mode"
+label = "Bitmap..."
+
+[[item]]
+id = "image.mode.grayscale"
+menu = "Image/Mode"
+label = "Grayscale"
+
+[[item]]
+id = "image.mode.duotone"
+menu = "Image/Mode"
+label = "Duotone..."
+
+[[item]]
+id = "image.mode.indexed"
+menu = "Image/Mode"
+label = "Indexed Color..."
+
+[[item]]
+id = "image.mode.rgb"
+menu = "Image/Mode"
+label = "RGB Color"
+
+[[item]]
+id = "image.mode.cmyk"
+menu = "Image/Mode"
+label = "CMYK Color"
+
+[[item]]
+id = "image.mode.lab"
+menu = "Image/Mode"
+label = "Lab Color"
+
+[[item]]
+id = "image.mode.multichannel"
+menu = "Image/Mode"
+label = "Multichannel"
+
+[[item]]
+id = "image.mode.depth8"
+menu = "Image/Mode"
+label = "8 Bits/Channel"
+
+[[item]]
+id = "image.mode.depth16"
+menu = "Image/Mode"
+label = "16 Bits/Channel"
+
+[[item]]
+id = "image.mode.depth32"
+menu = "Image/Mode"
+label = "32 Bits/Channel"
+
+[[item]]
+id = "image.mode.color_table"
+menu = "Image/Mode"
+label = "Color Table..."
+
+[[item]]
+id = "image.adjust.brightness_contrast"
+menu = "Image/Adjustments"
+label = "Brightness/Contrast..."
+
 [[item]]
 id = "image.adjust.levels"
 menu = "Image/Adjustments"
@@ -91,15 +584,47 @@ label = "Curves..."
 shortcut = "Ctrl+M"
 
 [[item]]
+id = "image.adjust.exposure"
+menu = "Image/Adjustments"
+label = "Exposure..."
+
+[[item]]
+id = "image.adjust.vibrance"
+menu = "Image/Adjustments"
+label = "Vibrance..."
+
+[[item]]
 id = "image.adjust.hue_saturation"
 menu = "Image/Adjustments"
 label = "Hue/Saturation..."
 shortcut = "Ctrl+U"
 
 [[item]]
-id = "image.adjust.brightness_contrast"
+id = "image.adjust.color_balance"
 menu = "Image/Adjustments"
-label = "Brightness/Contrast..."
+label = "Color Balance..."
+shortcut = "Ctrl+B"
+
+[[item]]
+id = "image.adjust.black_white"
+menu = "Image/Adjustments"
+label = "Black and White..."
+shortcut = "Ctrl+Alt+Shift+B"
+
+[[item]]
+id = "image.adjust.photo_filter"
+menu = "Image/Adjustments"
+label = "Photo Filter..."
+
+[[item]]
+id = "image.adjust.channel_mixer"
+menu = "Image/Adjustments"
+label = "Channel Mixer..."
+
+[[item]]
+id = "image.adjust.color_lookup"
+menu = "Image/Adjustments"
+label = "Color Lookup..."
 
 [[item]]
 id = "image.adjust.invert"
@@ -108,14 +633,73 @@ label = "Invert"
 shortcut = "Ctrl+I"
 
 [[item]]
+id = "image.adjust.posterize"
+menu = "Image/Adjustments"
+label = "Posterize..."
+
+[[item]]
 id = "image.adjust.threshold"
 menu = "Image/Adjustments"
 label = "Threshold..."
 
 [[item]]
-id = "image.adjust.posterize"
+id = "image.adjust.gradient_map"
 menu = "Image/Adjustments"
-label = "Posterize..."
+label = "Gradient Map..."
+
+[[item]]
+id = "image.adjust.selective_color"
+menu = "Image/Adjustments"
+label = "Selective Color..."
+
+[[item]]
+id = "image.adjust.shadows_highlights"
+menu = "Image/Adjustments"
+label = "Shadows/Highlights..."
+
+[[item]]
+id = "image.adjust.hdr_toning"
+menu = "Image/Adjustments"
+label = "HDR Toning..."
+
+[[item]]
+id = "image.adjust.desaturate"
+menu = "Image/Adjustments"
+label = "Desaturate"
+shortcut = "Ctrl+Shift+U"
+
+[[item]]
+id = "image.adjust.match_color"
+menu = "Image/Adjustments"
+label = "Match Color..."
+
+[[item]]
+id = "image.adjust.replace_color"
+menu = "Image/Adjustments"
+label = "Replace Color..."
+
+[[item]]
+id = "image.adjust.equalize"
+menu = "Image/Adjustments"
+label = "Equalize"
+
+[[item]]
+id = "image.auto_tone"
+menu = "Image"
+label = "Auto Tone"
+shortcut = "Ctrl+Shift+L"
+
+[[item]]
+id = "image.auto_contrast"
+menu = "Image"
+label = "Auto Contrast"
+shortcut = "Ctrl+Alt+Shift+L"
+
+[[item]]
+id = "image.auto_color"
+menu = "Image"
+label = "Auto Color"
+shortcut = "Ctrl+Shift+B"
 
 [[item]]
 id = "image.image_size"
@@ -130,32 +714,588 @@ label = "Canvas Size..."
 shortcut = "Ctrl+Alt+C"
 
 [[item]]
+id = "image.rotate.180"
+menu = "Image/Rotate Canvas"
+label = "180°"
+
+[[item]]
 id = "image.rotate.cw90"
 menu = "Image/Rotate Canvas"
 label = "90° Clockwise"
 
 [[item]]
+id = "image.rotate.ccw90"
+menu = "Image/Rotate Canvas"
+label = "90° Counter Clockwise"
+
+[[item]]
+id = "image.rotate.arbitrary"
+menu = "Image/Rotate Canvas"
+label = "Arbitrary..."
+
+[[item]]
 id = "image.flip.horizontal"
 menu = "Image/Rotate Canvas"
-label = "Flip Horizontal"
+label = "Flip Canvas Horizontal"
+
+[[item]]
+id = "image.flip.vertical"
+menu = "Image/Rotate Canvas"
+label = "Flip Canvas Vertical"
+
+[[item]]
+id = "image.crop"
+menu = "Image"
+label = "Crop"
+
+[[item]]
+id = "image.trim"
+menu = "Image"
+label = "Trim..."
+
+[[item]]
+id = "image.reveal_all"
+menu = "Image"
+label = "Reveal All"
+
+[[item]]
+id = "image.duplicate"
+menu = "Image"
+label = "Duplicate..."
+
+[[item]]
+id = "image.apply_image"
+menu = "Image"
+label = "Apply Image..."
+
+[[item]]
+id = "image.calculations"
+menu = "Image"
+label = "Calculations..."
+
 
 # ---------------- Layer ----------------
 [[item]]
 id = "layer.new"
 menu = "Layer/New"
-label = "Layer"
+label = "Layer..."
 shortcut = "Ctrl+Shift+N"
+
+[[item]]
+id = "layer.new.group"
+menu = "Layer/New"
+label = "Group..."
+
+[[item]]
+id = "layer.new.from_background"
+menu = "Layer/New"
+label = "Layer from Background..."
+
+[[item]]
+id = "layer.new.background_from_layer"
+menu = "Layer/New"
+label = "Background from Layer"
+
+[[item]]
+id = "layer.new.via_copy"
+menu = "Layer/New"
+label = "Layer via Copy"
+shortcut = "Ctrl+J"
+
+[[item]]
+id = "layer.new.via_cut"
+menu = "Layer/New"
+label = "Layer via Cut"
+shortcut = "Ctrl+Shift+J"
 
 [[item]]
 id = "layer.duplicate"
 menu = "Layer"
-label = "Duplicate Layer"
-shortcut = "Ctrl+J"
+label = "Duplicate Layer..."
 
 [[item]]
 id = "layer.delete"
 menu = "Layer"
 label = "Delete Layer"
+
+[[item]]
+id = "layer.delete_hidden"
+menu = "Layer"
+label = "Delete Hidden Layers"
+
+[[item]]
+id = "layer.rename"
+menu = "Layer"
+label = "Rename Layer..."
+
+[[item]]
+id = "layer.properties"
+menu = "Layer"
+label = "Layer Properties..."
+
+[[item]]
+id = "layer.style.blending_options"
+menu = "Layer/Layer Style"
+label = "Blending Options..."
+
+[[item]]
+id = "layer.style.bevel_emboss"
+menu = "Layer/Layer Style"
+label = "Bevel and Emboss..."
+
+[[item]]
+id = "layer.style.stroke"
+menu = "Layer/Layer Style"
+label = "Stroke..."
+
+[[item]]
+id = "layer.style.inner_shadow"
+menu = "Layer/Layer Style"
+label = "Inner Shadow..."
+
+[[item]]
+id = "layer.style.inner_glow"
+menu = "Layer/Layer Style"
+label = "Inner Glow..."
+
+[[item]]
+id = "layer.style.satin"
+menu = "Layer/Layer Style"
+label = "Satin..."
+
+[[item]]
+id = "layer.style.color_overlay"
+menu = "Layer/Layer Style"
+label = "Color Overlay..."
+
+[[item]]
+id = "layer.style.gradient_overlay"
+menu = "Layer/Layer Style"
+label = "Gradient Overlay..."
+
+[[item]]
+id = "layer.style.pattern_overlay"
+menu = "Layer/Layer Style"
+label = "Pattern Overlay..."
+
+[[item]]
+id = "layer.style.outer_glow"
+menu = "Layer/Layer Style"
+label = "Outer Glow..."
+
+[[item]]
+id = "layer.style.drop_shadow"
+menu = "Layer/Layer Style"
+label = "Drop Shadow..."
+
+[[item]]
+id = "layer.style.copy"
+menu = "Layer/Layer Style"
+label = "Copy Layer Style"
+
+[[item]]
+id = "layer.style.paste"
+menu = "Layer/Layer Style"
+label = "Paste Layer Style"
+
+[[item]]
+id = "layer.style.clear"
+menu = "Layer/Layer Style"
+label = "Clear Layer Style"
+
+[[item]]
+id = "layer.style.global_light"
+menu = "Layer/Layer Style"
+label = "Global Light..."
+
+[[item]]
+id = "layer.style.create_layers"
+menu = "Layer/Layer Style"
+label = "Create Layers"
+
+[[item]]
+id = "layer.style.hide_all_effects"
+menu = "Layer/Layer Style"
+label = "Hide All Effects"
+
+[[item]]
+id = "layer.style.scale_effects"
+menu = "Layer/Layer Style"
+label = "Scale Effects..."
+
+[[item]]
+id = "layer.smart_filter.disable"
+menu = "Layer/Smart Filter"
+label = "Disable Smart Filters"
+
+[[item]]
+id = "layer.smart_filter.delete"
+menu = "Layer/Smart Filter"
+label = "Delete Smart Filters"
+
+[[item]]
+id = "layer.new_fill.solid_color"
+menu = "Layer/New Fill Layer"
+label = "Solid Color..."
+
+[[item]]
+id = "layer.new_fill.gradient"
+menu = "Layer/New Fill Layer"
+label = "Gradient..."
+
+[[item]]
+id = "layer.new_fill.pattern"
+menu = "Layer/New Fill Layer"
+label = "Pattern..."
+
+[[item]]
+id = "layer.new_adjustment.brightness_contrast"
+menu = "Layer/New Adjustment Layer"
+label = "Brightness/Contrast..."
+
+[[item]]
+id = "layer.new_adjustment.levels"
+menu = "Layer/New Adjustment Layer"
+label = "Levels..."
+
+[[item]]
+id = "layer.new_adjustment.curves"
+menu = "Layer/New Adjustment Layer"
+label = "Curves..."
+
+[[item]]
+id = "layer.new_adjustment.exposure"
+menu = "Layer/New Adjustment Layer"
+label = "Exposure..."
+
+[[item]]
+id = "layer.new_adjustment.vibrance"
+menu = "Layer/New Adjustment Layer"
+label = "Vibrance..."
+
+[[item]]
+id = "layer.new_adjustment.hue_saturation"
+menu = "Layer/New Adjustment Layer"
+label = "Hue/Saturation..."
+
+[[item]]
+id = "layer.new_adjustment.color_balance"
+menu = "Layer/New Adjustment Layer"
+label = "Color Balance..."
+
+[[item]]
+id = "layer.new_adjustment.black_white"
+menu = "Layer/New Adjustment Layer"
+label = "Black and White..."
+
+[[item]]
+id = "layer.new_adjustment.photo_filter"
+menu = "Layer/New Adjustment Layer"
+label = "Photo Filter..."
+
+[[item]]
+id = "layer.new_adjustment.channel_mixer"
+menu = "Layer/New Adjustment Layer"
+label = "Channel Mixer..."
+
+[[item]]
+id = "layer.new_adjustment.color_lookup"
+menu = "Layer/New Adjustment Layer"
+label = "Color Lookup..."
+
+[[item]]
+id = "layer.new_adjustment.invert"
+menu = "Layer/New Adjustment Layer"
+label = "Invert"
+
+[[item]]
+id = "layer.new_adjustment.posterize"
+menu = "Layer/New Adjustment Layer"
+label = "Posterize..."
+
+[[item]]
+id = "layer.new_adjustment.threshold"
+menu = "Layer/New Adjustment Layer"
+label = "Threshold..."
+
+[[item]]
+id = "layer.new_adjustment.gradient_map"
+menu = "Layer/New Adjustment Layer"
+label = "Gradient Map..."
+
+[[item]]
+id = "layer.new_adjustment.selective_color"
+menu = "Layer/New Adjustment Layer"
+label = "Selective Color..."
+
+[[item]]
+id = "layer.content_options"
+menu = "Layer"
+label = "Layer Content Options..."
+
+[[item]]
+id = "layer.mask.add"
+menu = "Layer/Layer Mask"
+label = "Reveal All"
+
+[[item]]
+id = "layer.mask.hide_all"
+menu = "Layer/Layer Mask"
+label = "Hide All"
+
+[[item]]
+id = "layer.mask.reveal_selection"
+menu = "Layer/Layer Mask"
+label = "Reveal Selection"
+
+[[item]]
+id = "layer.mask.hide_selection"
+menu = "Layer/Layer Mask"
+label = "Hide Selection"
+
+[[item]]
+id = "layer.mask.from_transparency"
+menu = "Layer/Layer Mask"
+label = "From Transparency"
+
+[[item]]
+id = "layer.mask.delete"
+menu = "Layer/Layer Mask"
+label = "Delete"
+
+[[item]]
+id = "layer.mask.apply"
+menu = "Layer/Layer Mask"
+label = "Apply"
+
+[[item]]
+id = "layer.mask.disable"
+menu = "Layer/Layer Mask"
+label = "Disable"
+
+[[item]]
+id = "layer.mask.unlink"
+menu = "Layer/Layer Mask"
+label = "Unlink"
+
+[[item]]
+id = "layer.vector_mask.reveal_all"
+menu = "Layer/Vector Mask"
+label = "Reveal All"
+
+[[item]]
+id = "layer.vector_mask.hide_all"
+menu = "Layer/Vector Mask"
+label = "Hide All"
+
+[[item]]
+id = "layer.vector_mask.current_path"
+menu = "Layer/Vector Mask"
+label = "Current Path"
+
+[[item]]
+id = "layer.vector_mask.delete"
+menu = "Layer/Vector Mask"
+label = "Delete"
+
+[[item]]
+id = "layer.clipping_mask.create"
+menu = "Layer"
+label = "Create Clipping Mask"
+shortcut = "Ctrl+Alt+G"
+
+[[item]]
+id = "layer.clipping_mask.release"
+menu = "Layer"
+label = "Release Clipping Mask"
+
+[[item]]
+id = "layer.smart_object.convert"
+menu = "Layer/Smart Objects"
+label = "Convert to Smart Object"
+
+[[item]]
+id = "layer.smart_object.new_via_copy"
+menu = "Layer/Smart Objects"
+label = "New Smart Object via Copy"
+
+[[item]]
+id = "layer.smart_object.edit_contents"
+menu = "Layer/Smart Objects"
+label = "Edit Contents"
+
+[[item]]
+id = "layer.smart_object.replace_contents"
+menu = "Layer/Smart Objects"
+label = "Replace Contents..."
+
+[[item]]
+id = "layer.smart_object.export_contents"
+menu = "Layer/Smart Objects"
+label = "Export Contents..."
+
+[[item]]
+id = "layer.rasterize.type"
+menu = "Layer/Rasterize"
+label = "Type"
+
+[[item]]
+id = "layer.rasterize.shape"
+menu = "Layer/Rasterize"
+label = "Shape"
+
+[[item]]
+id = "layer.rasterize.fill_content"
+menu = "Layer/Rasterize"
+label = "Fill Content"
+
+[[item]]
+id = "layer.rasterize.vector_mask"
+menu = "Layer/Rasterize"
+label = "Vector Mask"
+
+[[item]]
+id = "layer.rasterize.smart_object"
+menu = "Layer/Rasterize"
+label = "Smart Object"
+
+[[item]]
+id = "layer.rasterize.layer"
+menu = "Layer/Rasterize"
+label = "Layer"
+
+[[item]]
+id = "layer.rasterize.all_layers"
+menu = "Layer/Rasterize"
+label = "All Layers"
+
+[[item]]
+id = "layer.rasterize.layer_style"
+menu = "Layer/Rasterize"
+label = "Layer Style"
+
+[[item]]
+id = "layer.group"
+menu = "Layer"
+label = "Group Layers"
+shortcut = "Ctrl+G"
+
+[[item]]
+id = "layer.ungroup"
+menu = "Layer"
+label = "Ungroup Layers"
+shortcut = "Ctrl+Shift+G"
+
+[[item]]
+id = "layer.visibility.toggle"
+menu = "Layer"
+label = "Hide/Show Layers"
+shortcut = "Ctrl+,"
+
+[[item]]
+id = "layer.arrange.front"
+menu = "Layer/Arrange"
+label = "Bring to Front"
+shortcut = "Ctrl+Shift+]"
+
+[[item]]
+id = "layer.arrange.forward"
+menu = "Layer/Arrange"
+label = "Bring Forward"
+shortcut = "Ctrl+]"
+
+[[item]]
+id = "layer.arrange.backward"
+menu = "Layer/Arrange"
+label = "Send Backward"
+shortcut = "Ctrl+["
+
+[[item]]
+id = "layer.arrange.back"
+menu = "Layer/Arrange"
+label = "Send to Back"
+shortcut = "Ctrl+Shift+["
+
+[[item]]
+id = "layer.arrange.reverse"
+menu = "Layer/Arrange"
+label = "Reverse"
+
+[[item]]
+id = "layer.align.top"
+menu = "Layer/Align"
+label = "Top Edges"
+
+[[item]]
+id = "layer.align.v_center"
+menu = "Layer/Align"
+label = "Vertical Centers"
+
+[[item]]
+id = "layer.align.bottom"
+menu = "Layer/Align"
+label = "Bottom Edges"
+
+[[item]]
+id = "layer.align.left"
+menu = "Layer/Align"
+label = "Left Edges"
+
+[[item]]
+id = "layer.align.h_center"
+menu = "Layer/Align"
+label = "Horizontal Centers"
+
+[[item]]
+id = "layer.align.right"
+menu = "Layer/Align"
+label = "Right Edges"
+
+[[item]]
+id = "layer.distribute.top"
+menu = "Layer/Distribute"
+label = "Top Edges"
+
+[[item]]
+id = "layer.distribute.v_center"
+menu = "Layer/Distribute"
+label = "Vertical Centers"
+
+[[item]]
+id = "layer.distribute.bottom"
+menu = "Layer/Distribute"
+label = "Bottom Edges"
+
+[[item]]
+id = "layer.distribute.left"
+menu = "Layer/Distribute"
+label = "Left Edges"
+
+[[item]]
+id = "layer.distribute.h_center"
+menu = "Layer/Distribute"
+label = "Horizontal Centers"
+
+[[item]]
+id = "layer.distribute.right"
+menu = "Layer/Distribute"
+label = "Right Edges"
+
+[[item]]
+id = "layer.lock_all"
+menu = "Layer"
+label = "Lock Layers..."
+shortcut = "Ctrl+/"
+
+[[item]]
+id = "layer.link"
+menu = "Layer"
+label = "Link Layers"
+
+[[item]]
+id = "layer.select_linked"
+menu = "Layer"
+label = "Select Linked Layers"
 
 [[item]]
 id = "layer.merge_down"
@@ -164,20 +1304,108 @@ label = "Merge Down"
 shortcut = "Ctrl+E"
 
 [[item]]
+id = "layer.merge_visible"
+menu = "Layer"
+label = "Merge Visible"
+shortcut = "Ctrl+Shift+E"
+
+[[item]]
 id = "layer.flatten"
 menu = "Layer"
 label = "Flatten Image"
 
 [[item]]
-id = "layer.mask.add"
-menu = "Layer/Layer Mask"
-label = "Reveal All"
+id = "layer.matting.defringe"
+menu = "Layer/Matting"
+label = "Defringe..."
 
 [[item]]
-id = "layer.clipping_mask.create"
-menu = "Layer"
-label = "Create Clipping Mask"
-shortcut = "Ctrl+Alt+G"
+id = "layer.matting.remove_black"
+menu = "Layer/Matting"
+label = "Remove Black Matte"
+
+[[item]]
+id = "layer.matting.remove_white"
+menu = "Layer/Matting"
+label = "Remove White Matte"
+
+
+# ---------------- Type ----------------
+[[item]]
+id = "type.anti_alias.none"
+menu = "Type/Anti-Alias"
+label = "None"
+
+[[item]]
+id = "type.anti_alias.sharp"
+menu = "Type/Anti-Alias"
+label = "Sharp"
+
+[[item]]
+id = "type.anti_alias.crisp"
+menu = "Type/Anti-Alias"
+label = "Crisp"
+
+[[item]]
+id = "type.anti_alias.strong"
+menu = "Type/Anti-Alias"
+label = "Strong"
+
+[[item]]
+id = "type.anti_alias.smooth"
+menu = "Type/Anti-Alias"
+label = "Smooth"
+
+[[item]]
+id = "type.orientation.horizontal"
+menu = "Type/Orientation"
+label = "Horizontal"
+
+[[item]]
+id = "type.orientation.vertical"
+menu = "Type/Orientation"
+label = "Vertical"
+
+[[item]]
+id = "type.warp"
+menu = "Type"
+label = "Warp Text..."
+
+[[item]]
+id = "type.convert_to_paragraph"
+menu = "Type"
+label = "Convert to Paragraph Text"
+
+[[item]]
+id = "type.convert_to_shape"
+menu = "Type"
+label = "Convert to Shape"
+
+[[item]]
+id = "type.create_work_path"
+menu = "Type"
+label = "Create Work Path"
+
+[[item]]
+id = "type.rasterize"
+menu = "Type"
+label = "Rasterize Type Layer"
+
+[[item]]
+id = "type.update_all"
+menu = "Type"
+label = "Update All Text Layers"
+
+[[item]]
+id = "type.replace_missing_fonts"
+menu = "Type"
+label = "Replace All Missing Fonts"
+
+[[item]]
+id = "type.paste_placeholder"
+menu = "Type"
+label = "Paste Placeholder Text"
+
 
 # ---------------- Select ----------------
 [[item]]
@@ -193,21 +1421,243 @@ label = "Deselect"
 shortcut = "Ctrl+D"
 
 [[item]]
+id = "select.reselect"
+menu = "Select"
+label = "Reselect"
+shortcut = "Ctrl+Shift+D"
+
+[[item]]
 id = "select.inverse"
 menu = "Select"
 label = "Inverse"
 shortcut = "Ctrl+Shift+I"
 
 [[item]]
+id = "select.all_layers"
+menu = "Select"
+label = "All Layers"
+shortcut = "Ctrl+Alt+A"
+
+[[item]]
+id = "select.deselect_layers"
+menu = "Select"
+label = "Deselect Layers"
+
+[[item]]
+id = "select.find_layers"
+menu = "Select"
+label = "Find Layers"
+shortcut = "Ctrl+Alt+Shift+F"
+
+[[item]]
 id = "select.color_range"
 menu = "Select"
 label = "Color Range..."
 
+[[item]]
+id = "select.focus_area"
+menu = "Select"
+label = "Focus Area..."
+
+[[item]]
+id = "select.select_and_mask"
+menu = "Select"
+label = "Select and Mask..."
+shortcut = "Ctrl+Alt+R"
+
+[[item]]
+id = "select.modify.border"
+menu = "Select/Modify"
+label = "Border..."
+
+[[item]]
+id = "select.modify.smooth"
+menu = "Select/Modify"
+label = "Smooth..."
+
+[[item]]
+id = "select.modify.expand"
+menu = "Select/Modify"
+label = "Expand..."
+
+[[item]]
+id = "select.modify.contract"
+menu = "Select/Modify"
+label = "Contract..."
+
+[[item]]
+id = "select.modify.feather"
+menu = "Select/Modify"
+label = "Feather..."
+shortcut = "Shift+F6"
+
+[[item]]
+id = "select.grow"
+menu = "Select"
+label = "Grow"
+
+[[item]]
+id = "select.similar"
+menu = "Select"
+label = "Similar"
+
+[[item]]
+id = "select.transform"
+menu = "Select"
+label = "Transform Selection"
+
+[[item]]
+id = "select.quick_mask"
+menu = "Select"
+label = "Edit in Quick Mask Mode"
+
+[[item]]
+id = "select.load"
+menu = "Select"
+label = "Load Selection..."
+
+[[item]]
+id = "select.save"
+menu = "Select"
+label = "Save Selection..."
+
+
 # ---------------- Filter ----------------
 [[item]]
-id = "filter.blur.gaussian"
+id = "filter.last"
+menu = "Filter"
+label = "Last Filter"
+shortcut = "Ctrl+Alt+F"
+
+[[item]]
+id = "filter.convert_for_smart"
+menu = "Filter"
+label = "Convert for Smart Filters"
+
+[[item]]
+id = "filter.gallery"
+menu = "Filter"
+label = "Filter Gallery..."
+
+[[item]]
+id = "filter.adaptive_wide_angle"
+menu = "Filter"
+label = "Adaptive Wide Angle..."
+shortcut = "Ctrl+Alt+Shift+A"
+
+[[item]]
+id = "filter.raw_develop"
+menu = "Filter"
+label = "Raw Develop..."
+shortcut = "Ctrl+Shift+A"
+
+[[item]]
+id = "filter.lens_correction"
+menu = "Filter"
+label = "Lens Correction..."
+shortcut = "Ctrl+Shift+R"
+
+[[item]]
+id = "filter.liquify"
+menu = "Filter"
+label = "Liquify..."
+shortcut = "Ctrl+Shift+X"
+
+[[item]]
+id = "filter.vanishing_point"
+menu = "Filter"
+label = "Vanishing Point..."
+shortcut = "Ctrl+Alt+V"
+
+[[item]]
+id = "filter.artistic.colored_pencil"
+menu = "Filter/Artistic"
+label = "Colored Pencil..."
+
+[[item]]
+id = "filter.artistic.cutout"
+menu = "Filter/Artistic"
+label = "Cutout..."
+
+[[item]]
+id = "filter.artistic.dry_brush"
+menu = "Filter/Artistic"
+label = "Dry Brush..."
+
+[[item]]
+id = "filter.artistic.film_grain"
+menu = "Filter/Artistic"
+label = "Film Grain..."
+
+[[item]]
+id = "filter.artistic.fresco"
+menu = "Filter/Artistic"
+label = "Fresco..."
+
+[[item]]
+id = "filter.artistic.neon_glow"
+menu = "Filter/Artistic"
+label = "Neon Glow..."
+
+[[item]]
+id = "filter.artistic.paint_daubs"
+menu = "Filter/Artistic"
+label = "Paint Daubs..."
+
+[[item]]
+id = "filter.artistic.palette_knife"
+menu = "Filter/Artistic"
+label = "Palette Knife..."
+
+[[item]]
+id = "filter.artistic.plastic_wrap"
+menu = "Filter/Artistic"
+label = "Plastic Wrap..."
+
+[[item]]
+id = "filter.artistic.poster_edges"
+menu = "Filter/Artistic"
+label = "Poster Edges..."
+
+[[item]]
+id = "filter.artistic.rough_pastels"
+menu = "Filter/Artistic"
+label = "Rough Pastels..."
+
+[[item]]
+id = "filter.artistic.smudge_stick"
+menu = "Filter/Artistic"
+label = "Smudge Stick..."
+
+[[item]]
+id = "filter.artistic.sponge"
+menu = "Filter/Artistic"
+label = "Sponge..."
+
+[[item]]
+id = "filter.artistic.underpainting"
+menu = "Filter/Artistic"
+label = "Underpainting..."
+
+[[item]]
+id = "filter.artistic.watercolor"
+menu = "Filter/Artistic"
+label = "Watercolor..."
+
+[[item]]
+id = "filter.blur.average"
 menu = "Filter/Blur"
-label = "Gaussian Blur..."
+label = "Average"
+
+[[item]]
+id = "filter.blur.blur"
+menu = "Filter/Blur"
+label = "Blur"
+
+[[item]]
+id = "filter.blur.blur_more"
+menu = "Filter/Blur"
+label = "Blur More"
 
 [[item]]
 id = "filter.blur.box"
@@ -215,14 +1665,164 @@ menu = "Filter/Blur"
 label = "Box Blur..."
 
 [[item]]
+id = "filter.blur.gaussian"
+menu = "Filter/Blur"
+label = "Gaussian Blur..."
+
+[[item]]
+id = "filter.blur.lens"
+menu = "Filter/Blur"
+label = "Lens Blur..."
+
+[[item]]
 id = "filter.blur.motion"
 menu = "Filter/Blur"
 label = "Motion Blur..."
 
 [[item]]
-id = "filter.sharpen.unsharp_mask"
-menu = "Filter/Sharpen"
-label = "Unsharp Mask..."
+id = "filter.blur.radial"
+menu = "Filter/Blur"
+label = "Radial Blur..."
+
+[[item]]
+id = "filter.blur.shape"
+menu = "Filter/Blur"
+label = "Shape Blur..."
+
+[[item]]
+id = "filter.blur.smart"
+menu = "Filter/Blur"
+label = "Smart Blur..."
+
+[[item]]
+id = "filter.blur.surface"
+menu = "Filter/Blur"
+label = "Surface Blur..."
+
+[[item]]
+id = "filter.blur_gallery.field"
+menu = "Filter/Blur Gallery"
+label = "Field Blur..."
+
+[[item]]
+id = "filter.blur_gallery.iris"
+menu = "Filter/Blur Gallery"
+label = "Iris Blur..."
+
+[[item]]
+id = "filter.blur_gallery.tilt_shift"
+menu = "Filter/Blur Gallery"
+label = "Tilt-Shift..."
+
+[[item]]
+id = "filter.blur_gallery.path"
+menu = "Filter/Blur Gallery"
+label = "Path Blur..."
+
+[[item]]
+id = "filter.blur_gallery.spin"
+menu = "Filter/Blur Gallery"
+label = "Spin Blur..."
+
+[[item]]
+id = "filter.brush_strokes.accented_edges"
+menu = "Filter/Brush Strokes"
+label = "Accented Edges..."
+
+[[item]]
+id = "filter.brush_strokes.angled_strokes"
+menu = "Filter/Brush Strokes"
+label = "Angled Strokes..."
+
+[[item]]
+id = "filter.brush_strokes.crosshatch"
+menu = "Filter/Brush Strokes"
+label = "Crosshatch..."
+
+[[item]]
+id = "filter.brush_strokes.dark_strokes"
+menu = "Filter/Brush Strokes"
+label = "Dark Strokes..."
+
+[[item]]
+id = "filter.brush_strokes.ink_outlines"
+menu = "Filter/Brush Strokes"
+label = "Ink Outlines..."
+
+[[item]]
+id = "filter.brush_strokes.spatter"
+menu = "Filter/Brush Strokes"
+label = "Spatter..."
+
+[[item]]
+id = "filter.brush_strokes.sprayed_strokes"
+menu = "Filter/Brush Strokes"
+label = "Sprayed Strokes..."
+
+[[item]]
+id = "filter.brush_strokes.sumi_e"
+menu = "Filter/Brush Strokes"
+label = "Sumi-e..."
+
+[[item]]
+id = "filter.distort.displace"
+menu = "Filter/Distort"
+label = "Displace..."
+
+[[item]]
+id = "filter.distort.pinch"
+menu = "Filter/Distort"
+label = "Pinch..."
+
+[[item]]
+id = "filter.distort.polar_coordinates"
+menu = "Filter/Distort"
+label = "Polar Coordinates..."
+
+[[item]]
+id = "filter.distort.ripple"
+menu = "Filter/Distort"
+label = "Ripple..."
+
+[[item]]
+id = "filter.distort.shear"
+menu = "Filter/Distort"
+label = "Shear..."
+
+[[item]]
+id = "filter.distort.spherize"
+menu = "Filter/Distort"
+label = "Spherize..."
+
+[[item]]
+id = "filter.distort.twirl"
+menu = "Filter/Distort"
+label = "Twirl..."
+
+[[item]]
+id = "filter.distort.wave"
+menu = "Filter/Distort"
+label = "Wave..."
+
+[[item]]
+id = "filter.distort.zigzag"
+menu = "Filter/Distort"
+label = "ZigZag..."
+
+[[item]]
+id = "filter.distort.diffuse_glow"
+menu = "Filter/Distort"
+label = "Diffuse Glow..."
+
+[[item]]
+id = "filter.distort.glass"
+menu = "Filter/Distort"
+label = "Glass..."
+
+[[item]]
+id = "filter.distort.ocean_ripple"
+menu = "Filter/Distort"
+label = "Ocean Ripple..."
 
 [[item]]
 id = "filter.noise.add"
@@ -230,14 +1830,184 @@ menu = "Filter/Noise"
 label = "Add Noise..."
 
 [[item]]
+id = "filter.noise.despeckle"
+menu = "Filter/Noise"
+label = "Despeckle"
+
+[[item]]
+id = "filter.noise.dust_scratches"
+menu = "Filter/Noise"
+label = "Dust and Scratches..."
+
+[[item]]
 id = "filter.noise.median"
 menu = "Filter/Noise"
 label = "Median..."
 
 [[item]]
-id = "filter.other.high_pass"
-menu = "Filter/Other"
-label = "High Pass..."
+id = "filter.noise.reduce"
+menu = "Filter/Noise"
+label = "Reduce Noise..."
+
+[[item]]
+id = "filter.pixelate.color_halftone"
+menu = "Filter/Pixelate"
+label = "Color Halftone..."
+
+[[item]]
+id = "filter.pixelate.crystallize"
+menu = "Filter/Pixelate"
+label = "Crystallize..."
+
+[[item]]
+id = "filter.pixelate.facet"
+menu = "Filter/Pixelate"
+label = "Facet"
+
+[[item]]
+id = "filter.pixelate.fragment"
+menu = "Filter/Pixelate"
+label = "Fragment"
+
+[[item]]
+id = "filter.pixelate.mezzotint"
+menu = "Filter/Pixelate"
+label = "Mezzotint..."
+
+[[item]]
+id = "filter.pixelate.mosaic"
+menu = "Filter/Pixelate"
+label = "Mosaic..."
+
+[[item]]
+id = "filter.pixelate.pointillize"
+menu = "Filter/Pixelate"
+label = "Pointillize..."
+
+[[item]]
+id = "filter.render.clouds"
+menu = "Filter/Render"
+label = "Clouds"
+
+[[item]]
+id = "filter.render.difference_clouds"
+menu = "Filter/Render"
+label = "Difference Clouds"
+
+[[item]]
+id = "filter.render.fibers"
+menu = "Filter/Render"
+label = "Fibers..."
+
+[[item]]
+id = "filter.render.lens_flare"
+menu = "Filter/Render"
+label = "Lens Flare..."
+
+[[item]]
+id = "filter.render.lighting_effects"
+menu = "Filter/Render"
+label = "Lighting Effects..."
+
+[[item]]
+id = "filter.sharpen.sharpen"
+menu = "Filter/Sharpen"
+label = "Sharpen"
+
+[[item]]
+id = "filter.sharpen.sharpen_more"
+menu = "Filter/Sharpen"
+label = "Sharpen More"
+
+[[item]]
+id = "filter.sharpen.sharpen_edges"
+menu = "Filter/Sharpen"
+label = "Sharpen Edges"
+
+[[item]]
+id = "filter.sharpen.smart"
+menu = "Filter/Sharpen"
+label = "Smart Sharpen..."
+
+[[item]]
+id = "filter.sharpen.unsharp_mask"
+menu = "Filter/Sharpen"
+label = "Unsharp Mask..."
+
+[[item]]
+id = "filter.sketch.bas_relief"
+menu = "Filter/Sketch"
+label = "Bas Relief..."
+
+[[item]]
+id = "filter.sketch.chalk_charcoal"
+menu = "Filter/Sketch"
+label = "Chalk and Charcoal..."
+
+[[item]]
+id = "filter.sketch.charcoal"
+menu = "Filter/Sketch"
+label = "Charcoal..."
+
+[[item]]
+id = "filter.sketch.chrome"
+menu = "Filter/Sketch"
+label = "Chrome..."
+
+[[item]]
+id = "filter.sketch.conte_crayon"
+menu = "Filter/Sketch"
+label = "Conte Crayon..."
+
+[[item]]
+id = "filter.sketch.graphic_pen"
+menu = "Filter/Sketch"
+label = "Graphic Pen..."
+
+[[item]]
+id = "filter.sketch.halftone_pattern"
+menu = "Filter/Sketch"
+label = "Halftone Pattern..."
+
+[[item]]
+id = "filter.sketch.note_paper"
+menu = "Filter/Sketch"
+label = "Note Paper..."
+
+[[item]]
+id = "filter.sketch.photocopy"
+menu = "Filter/Sketch"
+label = "Photocopy..."
+
+[[item]]
+id = "filter.sketch.plaster"
+menu = "Filter/Sketch"
+label = "Plaster..."
+
+[[item]]
+id = "filter.sketch.reticulation"
+menu = "Filter/Sketch"
+label = "Reticulation..."
+
+[[item]]
+id = "filter.sketch.stamp"
+menu = "Filter/Sketch"
+label = "Stamp..."
+
+[[item]]
+id = "filter.sketch.torn_edges"
+menu = "Filter/Sketch"
+label = "Torn Edges..."
+
+[[item]]
+id = "filter.sketch.water_paper"
+menu = "Filter/Sketch"
+label = "Water Paper..."
+
+[[item]]
+id = "filter.stylize.diffuse"
+menu = "Filter/Stylize"
+label = "Diffuse..."
 
 [[item]]
 id = "filter.stylize.emboss"
@@ -245,11 +2015,119 @@ menu = "Filter/Stylize"
 label = "Emboss..."
 
 [[item]]
-id = "filter.pixelate.mosaic"
-menu = "Filter/Pixelate"
-label = "Mosaic..."
+id = "filter.stylize.extrude"
+menu = "Filter/Stylize"
+label = "Extrude..."
+
+[[item]]
+id = "filter.stylize.find_edges"
+menu = "Filter/Stylize"
+label = "Find Edges"
+
+[[item]]
+id = "filter.stylize.glowing_edges"
+menu = "Filter/Stylize"
+label = "Glowing Edges..."
+
+[[item]]
+id = "filter.stylize.oil_paint"
+menu = "Filter/Stylize"
+label = "Oil Paint..."
+
+[[item]]
+id = "filter.stylize.solarize"
+menu = "Filter/Stylize"
+label = "Solarize"
+
+[[item]]
+id = "filter.stylize.tiles"
+menu = "Filter/Stylize"
+label = "Tiles..."
+
+[[item]]
+id = "filter.stylize.trace_contour"
+menu = "Filter/Stylize"
+label = "Trace Contour..."
+
+[[item]]
+id = "filter.stylize.wind"
+menu = "Filter/Stylize"
+label = "Wind..."
+
+[[item]]
+id = "filter.texture.craquelure"
+menu = "Filter/Texture"
+label = "Craquelure..."
+
+[[item]]
+id = "filter.texture.grain"
+menu = "Filter/Texture"
+label = "Grain..."
+
+[[item]]
+id = "filter.texture.mosaic_tiles"
+menu = "Filter/Texture"
+label = "Mosaic Tiles..."
+
+[[item]]
+id = "filter.texture.patchwork"
+menu = "Filter/Texture"
+label = "Patchwork..."
+
+[[item]]
+id = "filter.texture.stained_glass"
+menu = "Filter/Texture"
+label = "Stained Glass..."
+
+[[item]]
+id = "filter.texture.texturizer"
+menu = "Filter/Texture"
+label = "Texturizer..."
+
+[[item]]
+id = "filter.other.custom"
+menu = "Filter/Other"
+label = "Custom..."
+
+[[item]]
+id = "filter.other.high_pass"
+menu = "Filter/Other"
+label = "High Pass..."
+
+[[item]]
+id = "filter.other.hsb_hsl"
+menu = "Filter/Other"
+label = "HSB/HSL"
+
+[[item]]
+id = "filter.other.maximum"
+menu = "Filter/Other"
+label = "Maximum..."
+
+[[item]]
+id = "filter.other.minimum"
+menu = "Filter/Other"
+label = "Minimum..."
+
+[[item]]
+id = "filter.other.offset"
+menu = "Filter/Other"
+label = "Offset..."
+
 
 # ---------------- View ----------------
+[[item]]
+id = "view.proof_colors"
+menu = "View"
+label = "Proof Colors"
+shortcut = "Ctrl+Y"
+
+[[item]]
+id = "view.gamut_warning"
+menu = "View"
+label = "Gamut Warning"
+shortcut = "Ctrl+Shift+Y"
+
 [[item]]
 id = "view.zoom_in"
 menu = "View"
@@ -268,7 +2146,406 @@ menu = "View"
 label = "Fit on Screen"
 shortcut = "Ctrl+0"
 
-# ---------------- Tools (toolbar, no menu) ----------------
+[[item]]
+id = "view.actual_pixels"
+menu = "View"
+label = "100%"
+shortcut = "Ctrl+1"
+
+[[item]]
+id = "view.zoom_200"
+menu = "View"
+label = "200%"
+
+[[item]]
+id = "view.print_size"
+menu = "View"
+label = "Print Size"
+
+[[item]]
+id = "view.flip_horizontal"
+menu = "View"
+label = "Flip View Horizontal"
+
+[[item]]
+id = "view.screen_mode.standard"
+menu = "View/Screen Mode"
+label = "Standard Screen Mode"
+
+[[item]]
+id = "view.screen_mode.full_with_menus"
+menu = "View/Screen Mode"
+label = "Full Screen Mode with Menu Bar"
+
+[[item]]
+id = "view.screen_mode.full"
+menu = "View/Screen Mode"
+label = "Full Screen Mode"
+
+[[item]]
+id = "view.extras"
+menu = "View"
+label = "Extras"
+shortcut = "Ctrl+H"
+
+[[item]]
+id = "view.show.selection_edges"
+menu = "View/Show"
+label = "Selection Edges"
+
+[[item]]
+id = "view.show.target_path"
+menu = "View/Show"
+label = "Target Path"
+
+[[item]]
+id = "view.show.grid"
+menu = "View/Show"
+label = "Grid"
+shortcut = "Ctrl+'"
+
+[[item]]
+id = "view.show.guides"
+menu = "View/Show"
+label = "Guides"
+shortcut = "Ctrl+;"
+
+[[item]]
+id = "view.show.smart_guides"
+menu = "View/Show"
+label = "Smart Guides"
+
+[[item]]
+id = "view.show.layer_edges"
+menu = "View/Show"
+label = "Layer Edges"
+
+[[item]]
+id = "view.show.pixel_grid"
+menu = "View/Show"
+label = "Pixel Grid"
+
+[[item]]
+id = "view.rulers"
+menu = "View"
+label = "Rulers"
+shortcut = "Ctrl+R"
+
+[[item]]
+id = "view.snap"
+menu = "View"
+label = "Snap"
+shortcut = "Ctrl+Shift+;"
+
+[[item]]
+id = "view.snap_to.guides"
+menu = "View/Snap To"
+label = "Guides"
+
+[[item]]
+id = "view.snap_to.grid"
+menu = "View/Snap To"
+label = "Grid"
+
+[[item]]
+id = "view.snap_to.layers"
+menu = "View/Snap To"
+label = "Layers"
+
+[[item]]
+id = "view.snap_to.document_bounds"
+menu = "View/Snap To"
+label = "Document Bounds"
+
+[[item]]
+id = "view.snap_to.all"
+menu = "View/Snap To"
+label = "All"
+
+[[item]]
+id = "view.snap_to.none"
+menu = "View/Snap To"
+label = "None"
+
+[[item]]
+id = "view.guides.lock"
+menu = "View/Guides"
+label = "Lock Guides"
+shortcut = "Ctrl+Alt+;"
+
+[[item]]
+id = "view.guides.clear"
+menu = "View/Guides"
+label = "Clear Guides"
+
+[[item]]
+id = "view.guides.new"
+menu = "View/Guides"
+label = "New Guide..."
+
+[[item]]
+id = "view.guides.new_layout"
+menu = "View/Guides"
+label = "New Guide Layout..."
+
+[[item]]
+id = "view.guides.from_shape"
+menu = "View/Guides"
+label = "New Guides From Shape"
+
+
+# ---------------- Window ----------------
+[[item]]
+id = "window.arrange.tabs"
+menu = "Window/Arrange"
+label = "Consolidate All to Tabs"
+
+[[item]]
+id = "window.arrange.tile"
+menu = "Window/Arrange"
+label = "Tile All"
+
+[[item]]
+id = "window.arrange.cascade"
+menu = "Window/Arrange"
+label = "Cascade"
+
+[[item]]
+id = "window.arrange.float_all"
+menu = "Window/Arrange"
+label = "Float All in Windows"
+
+[[item]]
+id = "window.arrange.match_zoom"
+menu = "Window/Arrange"
+label = "Match Zoom"
+
+[[item]]
+id = "window.arrange.match_location"
+menu = "Window/Arrange"
+label = "Match Location"
+
+[[item]]
+id = "window.arrange.new_window"
+menu = "Window/Arrange"
+label = "New Window for This Document"
+
+[[item]]
+id = "window.workspace.essentials"
+menu = "Window/Workspace"
+label = "Essentials (Default)"
+
+[[item]]
+id = "window.workspace.painting"
+menu = "Window/Workspace"
+label = "Painting"
+
+[[item]]
+id = "window.workspace.photography"
+menu = "Window/Workspace"
+label = "Photography"
+
+[[item]]
+id = "window.workspace.reset"
+menu = "Window/Workspace"
+label = "Reset Workspace"
+
+[[item]]
+id = "window.workspace.new"
+menu = "Window/Workspace"
+label = "New Workspace..."
+
+[[item]]
+id = "window.workspace.delete"
+menu = "Window/Workspace"
+label = "Delete Workspace..."
+
+[[item]]
+id = "window.actions"
+menu = "Window"
+label = "Actions"
+shortcut = "Alt+F9"
+
+[[item]]
+id = "window.adjustments"
+menu = "Window"
+label = "Adjustments"
+
+[[item]]
+id = "window.agent"
+menu = "Window"
+label = "Agent"
+
+[[item]]
+id = "window.brush_settings"
+menu = "Window"
+label = "Brush Settings"
+shortcut = "F5"
+
+[[item]]
+id = "window.brushes"
+menu = "Window"
+label = "Brushes"
+
+[[item]]
+id = "window.channels"
+menu = "Window"
+label = "Channels"
+
+[[item]]
+id = "window.character"
+menu = "Window"
+label = "Character"
+
+[[item]]
+id = "window.clone_source"
+menu = "Window"
+label = "Clone Source"
+
+[[item]]
+id = "window.color"
+menu = "Window"
+label = "Color"
+shortcut = "F6"
+
+[[item]]
+id = "window.glyphs"
+menu = "Window"
+label = "Glyphs"
+
+[[item]]
+id = "window.gradients"
+menu = "Window"
+label = "Gradients"
+
+[[item]]
+id = "window.histogram"
+menu = "Window"
+label = "Histogram"
+
+[[item]]
+id = "window.history"
+menu = "Window"
+label = "History"
+
+[[item]]
+id = "window.info"
+menu = "Window"
+label = "Info"
+shortcut = "F8"
+
+[[item]]
+id = "window.layer_comps"
+menu = "Window"
+label = "Layer Comps"
+
+[[item]]
+id = "window.layers"
+menu = "Window"
+label = "Layers"
+shortcut = "F7"
+
+[[item]]
+id = "window.navigator"
+menu = "Window"
+label = "Navigator"
+
+[[item]]
+id = "window.notes"
+menu = "Window"
+label = "Notes"
+
+[[item]]
+id = "window.options"
+menu = "Window"
+label = "Options"
+
+[[item]]
+id = "window.paragraph"
+menu = "Window"
+label = "Paragraph"
+
+[[item]]
+id = "window.paths"
+menu = "Window"
+label = "Paths"
+
+[[item]]
+id = "window.patterns"
+menu = "Window"
+label = "Patterns"
+
+[[item]]
+id = "window.properties"
+menu = "Window"
+label = "Properties"
+
+[[item]]
+id = "window.shapes"
+menu = "Window"
+label = "Shapes"
+
+[[item]]
+id = "window.styles"
+menu = "Window"
+label = "Styles"
+
+[[item]]
+id = "window.swatches"
+menu = "Window"
+label = "Swatches"
+
+[[item]]
+id = "window.timeline"
+menu = "Window"
+label = "Timeline"
+
+[[item]]
+id = "window.tool_presets"
+menu = "Window"
+label = "Tool Presets"
+
+[[item]]
+id = "window.tools"
+menu = "Window"
+label = "Tools"
+
+
+# ---------------- Help ----------------
+[[item]]
+id = "help.user_guide"
+menu = "Help"
+label = "User Guide"
+shortcut = "F1"
+
+[[item]]
+id = "help.shortcuts_reference"
+menu = "Help"
+label = "Keyboard Shortcuts Reference"
+
+[[item]]
+id = "help.system_info"
+menu = "Help"
+label = "System Info..."
+
+[[item]]
+id = "help.report_issue"
+menu = "Help"
+label = "Report an Issue..."
+
+[[item]]
+id = "help.check_updates"
+menu = "Help"
+label = "Check for Updates..."
+
+[[item]]
+id = "help.about"
+menu = "Help"
+label = "About"
+
+
+# ---------------- Tools (toolbar). Tools that share a shortcut form one flyout group;
+# Shift+key cycles through the group. ----------------
 [[item]]
 id = "tool.move"
 kind = "tool"
@@ -282,16 +2559,647 @@ label = "Rectangular Marquee Tool"
 shortcut = "M"
 
 [[item]]
+id = "tool.marquee.ellipse"
+kind = "tool"
+label = "Elliptical Marquee Tool"
+shortcut = "M"
+
+[[item]]
+id = "tool.marquee.single_row"
+kind = "tool"
+label = "Single Row Marquee Tool"
+shortcut = "M"
+
+[[item]]
+id = "tool.marquee.single_column"
+kind = "tool"
+label = "Single Column Marquee Tool"
+shortcut = "M"
+
+[[item]]
+id = "tool.lasso"
+kind = "tool"
+label = "Lasso Tool"
+shortcut = "L"
+
+[[item]]
+id = "tool.lasso.polygonal"
+kind = "tool"
+label = "Polygonal Lasso Tool"
+shortcut = "L"
+
+[[item]]
+id = "tool.lasso.magnetic"
+kind = "tool"
+label = "Magnetic Lasso Tool"
+shortcut = "L"
+
+[[item]]
+id = "tool.quick_selection"
+kind = "tool"
+label = "Quick Selection Tool"
+shortcut = "W"
+
+[[item]]
+id = "tool.magic_wand"
+kind = "tool"
+label = "Magic Wand Tool"
+shortcut = "W"
+
+[[item]]
+id = "tool.crop"
+kind = "tool"
+label = "Crop Tool"
+shortcut = "C"
+
+[[item]]
+id = "tool.crop.perspective"
+kind = "tool"
+label = "Perspective Crop Tool"
+shortcut = "C"
+
+[[item]]
+id = "tool.slice"
+kind = "tool"
+label = "Slice Tool"
+shortcut = "C"
+
+[[item]]
+id = "tool.slice_select"
+kind = "tool"
+label = "Slice Select Tool"
+shortcut = "C"
+
+[[item]]
+id = "tool.eyedropper"
+kind = "tool"
+label = "Eyedropper Tool"
+shortcut = "I"
+
+[[item]]
+id = "tool.color_sampler"
+kind = "tool"
+label = "Color Sampler Tool"
+shortcut = "I"
+
+[[item]]
+id = "tool.ruler"
+kind = "tool"
+label = "Ruler Tool"
+shortcut = "I"
+
+[[item]]
+id = "tool.note"
+kind = "tool"
+label = "Note Tool"
+shortcut = "I"
+
+[[item]]
+id = "tool.count"
+kind = "tool"
+label = "Count Tool"
+shortcut = "I"
+
+[[item]]
+id = "tool.spot_healing"
+kind = "tool"
+label = "Spot Healing Brush Tool"
+shortcut = "J"
+
+[[item]]
+id = "tool.healing"
+kind = "tool"
+label = "Healing Brush Tool"
+shortcut = "J"
+
+[[item]]
+id = "tool.patch"
+kind = "tool"
+label = "Patch Tool"
+shortcut = "J"
+
+[[item]]
+id = "tool.content_move"
+kind = "tool"
+label = "Content Move Tool"
+shortcut = "J"
+
+[[item]]
+id = "tool.red_eye"
+kind = "tool"
+label = "Red Eye Tool"
+shortcut = "J"
+
+[[item]]
 id = "tool.brush"
 kind = "tool"
 label = "Brush Tool"
 shortcut = "B"
 
 [[item]]
+id = "tool.pencil"
+kind = "tool"
+label = "Pencil Tool"
+shortcut = "B"
+
+[[item]]
+id = "tool.color_replacement"
+kind = "tool"
+label = "Color Replacement Tool"
+shortcut = "B"
+
+[[item]]
+id = "tool.mixer_brush"
+kind = "tool"
+label = "Mixer Brush Tool"
+shortcut = "B"
+
+[[item]]
+id = "tool.clone_stamp"
+kind = "tool"
+label = "Clone Stamp Tool"
+shortcut = "S"
+
+[[item]]
+id = "tool.pattern_stamp"
+kind = "tool"
+label = "Pattern Stamp Tool"
+shortcut = "S"
+
+[[item]]
+id = "tool.history_brush"
+kind = "tool"
+label = "History Brush Tool"
+shortcut = "Y"
+
+[[item]]
+id = "tool.art_history_brush"
+kind = "tool"
+label = "Art History Brush Tool"
+shortcut = "Y"
+
+[[item]]
 id = "tool.eraser"
 kind = "tool"
 label = "Eraser Tool"
 shortcut = "E"
+
+[[item]]
+id = "tool.eraser.background"
+kind = "tool"
+label = "Background Eraser Tool"
+shortcut = "E"
+
+[[item]]
+id = "tool.eraser.magic"
+kind = "tool"
+label = "Magic Eraser Tool"
+shortcut = "E"
+
+[[item]]
+id = "tool.gradient"
+kind = "tool"
+label = "Gradient Tool"
+shortcut = "G"
+
+[[item]]
+id = "tool.paint_bucket"
+kind = "tool"
+label = "Paint Bucket Tool"
+shortcut = "G"
+
+[[item]]
+id = "tool.blur"
+kind = "tool"
+label = "Blur Tool"
+
+[[item]]
+id = "tool.sharpen"
+kind = "tool"
+label = "Sharpen Tool"
+
+[[item]]
+id = "tool.smudge"
+kind = "tool"
+label = "Smudge Tool"
+
+[[item]]
+id = "tool.dodge"
+kind = "tool"
+label = "Dodge Tool"
+shortcut = "O"
+
+[[item]]
+id = "tool.burn"
+kind = "tool"
+label = "Burn Tool"
+shortcut = "O"
+
+[[item]]
+id = "tool.sponge"
+kind = "tool"
+label = "Sponge Tool"
+shortcut = "O"
+
+[[item]]
+id = "tool.pen"
+kind = "tool"
+label = "Pen Tool"
+shortcut = "P"
+
+[[item]]
+id = "tool.pen.freeform"
+kind = "tool"
+label = "Freeform Pen Tool"
+shortcut = "P"
+
+[[item]]
+id = "tool.pen.curvature"
+kind = "tool"
+label = "Curvature Pen Tool"
+shortcut = "P"
+
+[[item]]
+id = "tool.pen.add_anchor"
+kind = "tool"
+label = "Add Anchor Point Tool"
+
+[[item]]
+id = "tool.pen.delete_anchor"
+kind = "tool"
+label = "Delete Anchor Point Tool"
+
+[[item]]
+id = "tool.pen.convert_point"
+kind = "tool"
+label = "Convert Point Tool"
+
+[[item]]
+id = "tool.type.horizontal"
+kind = "tool"
+label = "Horizontal Type Tool"
+shortcut = "T"
+
+[[item]]
+id = "tool.type.vertical"
+kind = "tool"
+label = "Vertical Type Tool"
+shortcut = "T"
+
+[[item]]
+id = "tool.type.mask_horizontal"
+kind = "tool"
+label = "Horizontal Type Mask Tool"
+shortcut = "T"
+
+[[item]]
+id = "tool.type.mask_vertical"
+kind = "tool"
+label = "Vertical Type Mask Tool"
+shortcut = "T"
+
+[[item]]
+id = "tool.path_selection"
+kind = "tool"
+label = "Path Selection Tool"
+shortcut = "A"
+
+[[item]]
+id = "tool.direct_selection"
+kind = "tool"
+label = "Direct Selection Tool"
+shortcut = "A"
+
+[[item]]
+id = "tool.shape.rect"
+kind = "tool"
+label = "Rectangle Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.shape.ellipse"
+kind = "tool"
+label = "Ellipse Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.shape.triangle"
+kind = "tool"
+label = "Triangle Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.shape.polygon"
+kind = "tool"
+label = "Polygon Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.shape.line"
+kind = "tool"
+label = "Line Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.shape.custom"
+kind = "tool"
+label = "Custom Shape Tool"
+shortcut = "U"
+
+[[item]]
+id = "tool.hand"
+kind = "tool"
+label = "Hand Tool"
+shortcut = "H"
+
+[[item]]
+id = "tool.rotate_view"
+kind = "tool"
+label = "Rotate View Tool"
+shortcut = "R"
+
+[[item]]
+id = "tool.zoom"
+kind = "tool"
+label = "Zoom Tool"
+shortcut = "Z"
+
+
+# ---------------- Panel actions (buttons and panel menus; no main-menu entry) ----------------
+[[item]]
+id = "layer.select"
+kind = "panel"
+label = "Select Layer"
+
+[[item]]
+id = "layer.opacity.set"
+kind = "panel"
+label = "Set Layer Opacity"
+
+[[item]]
+id = "layer.fill.set"
+kind = "panel"
+label = "Set Layer Fill"
+
+[[item]]
+id = "layer.blend_mode.set"
+kind = "panel"
+label = "Set Blend Mode"
+
+[[item]]
+id = "layer.lock.transparency"
+kind = "panel"
+label = "Lock Transparent Pixels"
+
+[[item]]
+id = "layer.lock.pixels"
+kind = "panel"
+label = "Lock Image Pixels"
+
+[[item]]
+id = "layer.lock.position"
+kind = "panel"
+label = "Lock Position"
+
+[[item]]
+id = "history.go_to"
+kind = "panel"
+label = "Go to History Step"
+
+[[item]]
+id = "history.snapshot.new"
+kind = "panel"
+label = "New Snapshot"
+
+[[item]]
+id = "history.new_document_from_state"
+kind = "panel"
+label = "New Document from Current State"
+
+[[item]]
+id = "history.clear"
+kind = "panel"
+label = "Clear History"
+
+[[item]]
+id = "channel.new"
+kind = "panel"
+label = "New Channel"
+
+[[item]]
+id = "channel.duplicate"
+kind = "panel"
+label = "Duplicate Channel"
+
+[[item]]
+id = "channel.delete"
+kind = "panel"
+label = "Delete Channel"
+
+[[item]]
+id = "channel.split"
+kind = "panel"
+label = "Split Channels"
+
+[[item]]
+id = "channel.merge"
+kind = "panel"
+label = "Merge Channels..."
+
+[[item]]
+id = "channel.load_as_selection"
+kind = "panel"
+label = "Load Channel as Selection"
+
+[[item]]
+id = "path.new"
+kind = "panel"
+label = "New Path"
+
+[[item]]
+id = "path.delete"
+kind = "panel"
+label = "Delete Path"
+
+[[item]]
+id = "path.fill"
+kind = "panel"
+label = "Fill Path..."
+
+[[item]]
+id = "path.stroke"
+kind = "panel"
+label = "Stroke Path..."
+
+[[item]]
+id = "path.make_selection"
+kind = "panel"
+label = "Make Selection..."
+
+[[item]]
+id = "path.make_work_path"
+kind = "panel"
+label = "Make Work Path..."
+
+[[item]]
+id = "swatch.add"
+kind = "panel"
+label = "New Swatch"
+
+[[item]]
+id = "swatch.delete"
+kind = "panel"
+label = "Delete Swatch"
+
+[[item]]
+id = "color.set_foreground"
+kind = "panel"
+label = "Set Foreground Color"
+
+[[item]]
+id = "color.set_background"
+kind = "panel"
+label = "Set Background Color"
+
+[[item]]
+id = "action.new"
+kind = "panel"
+label = "New Action..."
+
+[[item]]
+id = "action.record"
+kind = "panel"
+label = "Start Recording"
+
+[[item]]
+id = "action.stop"
+kind = "panel"
+label = "Stop Recording"
+
+[[item]]
+id = "action.play"
+kind = "panel"
+label = "Play Action"
+
+[[item]]
+id = "layer_comp.new"
+kind = "panel"
+label = "New Layer Comp..."
+
+[[item]]
+id = "layer_comp.apply"
+kind = "panel"
+label = "Apply Layer Comp"
+
+[[item]]
+id = "brush.preset.select"
+kind = "panel"
+label = "Select Brush Preset"
+
+
+# ---------------- Keyboard-only actions (no menu entry) ----------------
+[[item]]
+id = "key.colors.default"
+kind = "key"
+label = "Default Foreground and Background Colors"
+shortcut = "D"
+
+[[item]]
+id = "key.colors.swap"
+kind = "key"
+label = "Swap Foreground and Background Colors"
+shortcut = "X"
+
+[[item]]
+id = "key.brush.smaller"
+kind = "key"
+label = "Decrease Brush Size"
+shortcut = "["
+
+[[item]]
+id = "key.brush.larger"
+kind = "key"
+label = "Increase Brush Size"
+shortcut = "]"
+
+[[item]]
+id = "key.brush.softer"
+kind = "key"
+label = "Decrease Brush Hardness"
+shortcut = "Shift+["
+
+[[item]]
+id = "key.brush.harder"
+kind = "key"
+label = "Increase Brush Hardness"
+shortcut = "Shift+]"
+
+[[item]]
+id = "key.quick_mask"
+kind = "key"
+label = "Toggle Quick Mask"
+shortcut = "Q"
+
+[[item]]
+id = "key.screen_mode"
+kind = "key"
+label = "Cycle Screen Modes"
+shortcut = "F"
+
+[[item]]
+id = "key.nudge.left"
+kind = "key"
+label = "Nudge Left"
+shortcut = "Left"
+
+[[item]]
+id = "key.nudge.right"
+kind = "key"
+label = "Nudge Right"
+shortcut = "Right"
+
+[[item]]
+id = "key.nudge.up"
+kind = "key"
+label = "Nudge Up"
+shortcut = "Up"
+
+[[item]]
+id = "key.nudge.down"
+kind = "key"
+label = "Nudge Down"
+shortcut = "Down"
+
+[[item]]
+id = "key.hand.temporary"
+kind = "key"
+label = "Temporary Hand Tool"
+shortcut = "Space"
+
+[[item]]
+id = "key.fill.foreground"
+kind = "key"
+label = "Fill with Foreground Color"
+shortcut = "Alt+Backspace"
+
+[[item]]
+id = "key.fill.background"
+kind = "key"
+label = "Fill with Background Color"
+shortcut = "Ctrl+Backspace"
+
+[[item]]
+id = "key.layer.select_above"
+kind = "key"
+label = "Select Layer Above"
+shortcut = "Alt+]"
+
+[[item]]
+id = "key.layer.select_below"
+kind = "key"
+label = "Select Layer Below"
+shortcut = "Alt+["
+
 
 # ---------------- File formats ----------------
 [[item]]
@@ -308,3 +3216,158 @@ label = "JPEG (read and write)"
 id = "format.psd.read"
 kind = "format"
 label = "PSD (read)"
+
+[[item]]
+id = "format.psd.write"
+kind = "format"
+label = "PSD (write)"
+
+[[item]]
+id = "format.psb.read"
+kind = "format"
+label = "PSB large document (read)"
+
+[[item]]
+id = "format.psb.write"
+kind = "format"
+label = "PSB large document (write)"
+
+[[item]]
+id = "format.gif"
+kind = "format"
+label = "GIF (read and write)"
+
+[[item]]
+id = "format.webp"
+kind = "format"
+label = "WebP (read and write)"
+
+[[item]]
+id = "format.tiff"
+kind = "format"
+label = "TIFF (read and write)"
+
+[[item]]
+id = "format.bmp"
+kind = "format"
+label = "BMP (read and write)"
+
+[[item]]
+id = "format.tga"
+kind = "format"
+label = "TGA (read and write)"
+
+[[item]]
+id = "format.ico"
+kind = "format"
+label = "ICO (read and write)"
+
+[[item]]
+id = "format.avif"
+kind = "format"
+label = "AVIF (read and write)"
+
+[[item]]
+id = "format.heif"
+kind = "format"
+label = "HEIF (read)"
+
+[[item]]
+id = "format.jxl"
+kind = "format"
+label = "JPEG XL (read and write)"
+
+[[item]]
+id = "format.openexr"
+kind = "format"
+label = "OpenEXR (read and write)"
+
+[[item]]
+id = "format.radiance_hdr"
+kind = "format"
+label = "Radiance HDR (read and write)"
+
+[[item]]
+id = "format.pnm"
+kind = "format"
+label = "PBM/PGM/PPM (read and write)"
+
+[[item]]
+id = "format.qoi"
+kind = "format"
+label = "QOI (read and write)"
+
+[[item]]
+id = "format.dds"
+kind = "format"
+label = "DDS (read)"
+
+[[item]]
+id = "format.ora"
+kind = "format"
+label = "OpenRaster (read and write)"
+
+[[item]]
+id = "format.svg.read"
+kind = "format"
+label = "SVG (read, rasterized)"
+
+[[item]]
+id = "format.pdf.read"
+kind = "format"
+label = "PDF (read, rasterized)"
+
+[[item]]
+id = "format.pdf.write"
+kind = "format"
+label = "PDF (write)"
+
+[[item]]
+id = "format.raw.read"
+kind = "format"
+label = "Camera raw (read)"
+
+[[item]]
+id = "format.dng.read"
+kind = "format"
+label = "DNG (read)"
+
+[[item]]
+id = "format.icc"
+kind = "format"
+label = "ICC color profiles (read and embed)"
+
+[[item]]
+id = "format.abr"
+kind = "format"
+label = "ABR brush presets (read)"
+
+[[item]]
+id = "format.pat"
+kind = "format"
+label = "PAT pattern presets (read)"
+
+[[item]]
+id = "format.asl"
+kind = "format"
+label = "ASL layer style presets (read)"
+
+[[item]]
+id = "format.aco"
+kind = "format"
+label = "ACO swatches (read and write)"
+
+[[item]]
+id = "format.ase"
+kind = "format"
+label = "ASE swatches (read and write)"
+
+[[item]]
+id = "format.grd"
+kind = "format"
+label = "GRD gradient presets (read)"
+
+[[item]]
+id = "format.cube"
+kind = "format"
+label = "CUBE color lookup tables (read)"
