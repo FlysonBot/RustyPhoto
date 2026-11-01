@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T03:06:00Z'
-updated_date: '2026-11-01T03:12:00Z'
+updated_date: '2026-11-01T03:24:00Z'
 labels:
   - track:design
   - agent:opus
@@ -54,6 +54,8 @@ Snapshot tests (TASK-1) skip on PRs because the ubuntu-latest runner has no GPU 
 
 <!-- SECTION:NOTES:BEGIN -->
 PR #5 CI run 41268101114: mesa-vulkan-drivers 25.2.8 installed; 'test startup ... ok' and 'test file_menu_open ... ok' with no SKIP line, stored PNGs unchanged, tolerance unchanged (10 px). AC2 (Windows/macOS unchanged) is checked after merge on the main run; the new step has if: runner.os == 'Linux'. Install step adds ~15s per Linux run.
+
+Gemini review 2026-10-31: fixed docs saying CI runs snapshots 'on every OS' (PRs are Linux only). Rejected: cross-OS failure on main (main run 41267547440 passed on Windows+macOS within 10 px); hardware-made PNGs failing on lavapipe (Intel-made PNGs pass on lavapipe in this PR). Known, accepted risk: unpinned Mesa or apt mirror outage can fail a run (loudly, with a diff image).
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

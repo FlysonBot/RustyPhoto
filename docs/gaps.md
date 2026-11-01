@@ -8,7 +8,7 @@ Every number here is *estimated* unless it links to a generated file.
 
 ## G1. Agents can't see the UI
 Done:     `--snapshot out.png --size WxH` flag and snapshot tests (egui_kittest), TASK-1, 2026-10-31
-Done:     snapshot tests run on CI on every OS (Linux via Mesa's software renderer), TASK-29, 2026-10-31
+Done:     snapshot tests run on CI: Linux on every PR (Mesa software renderer), Windows/macOS on main, TASK-29, 2026-10-31
 Evidence: `crates/editor-app/tests/snapshot.rs`, `docs/recipes/check-ui.md`
 Impact:   every UI task; blocks agents from checking their own work
 Tasks:    TASK-1, TASK-29 (ADR-008)
