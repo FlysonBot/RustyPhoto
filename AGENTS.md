@@ -65,10 +65,17 @@ Each rule says what to do instead and how it is checked.
 
 ## 4. Picking work
 
+Look with `git fetch` then `backlog board`: the board includes other
+agents' branches. `backlog task list` shows only your own checkout, so it
+misses other agents' claims.
+
 1. A Backlog.md task with your agent label, status To Do or In Progress.
-2. Else the highest-priority unclaimed To Do task. Claim it (assign yourself,
-   set In Progress) before starting.
-3. Else the top entry in `docs/gaps.md` nobody holds: create a task for it.
+2. Else the highest-priority To Do task nobody has claimed. Claim it before
+   starting: in your worktree, assign yourself, set In Progress, then commit
+   and push that change before any other work. Until it is committed, no
+   other agent can see the claim. If two claims show up, the later one gives way.
+3. Else the top entry in `docs/gaps.md` nobody holds: create a task for it,
+   then commit and push it the same way.
 
 Product questions (what should the user experience?): write the question in
 the task, set it Blocked, and pick other work. Technical choices inside your

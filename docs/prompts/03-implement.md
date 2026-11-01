@@ -11,7 +11,8 @@ Read AGENTS.md. Your agent name is NAME. Work on TASK-ID only.
    doesn't exist yet, copy another agent's first (all: AGENTS.md section 6).
    Run every later step from inside this worktree.
 2. Read the task with the backlog CLI, and everything it links to.
-   Assign it to yourself and set it In Progress.
+   Assign it to yourself and set it In Progress, then commit and push that
+   change right away so other agents see the claim (AGENTS.md section 4).
 3. Write your implementation plan into the task. If the task is
    track:design, stop and wait for my approval of the plan. Otherwise go on.
 4. Implement it, touching only the task's "Files allowed". If you need
