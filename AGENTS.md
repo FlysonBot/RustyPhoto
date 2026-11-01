@@ -90,7 +90,11 @@ plan approval; catalog-track tasks proceed.
 
 ## 6. Parallel agents
 
-- Use your own build folder: `CARGO_TARGET_DIR=target/agent-<name>`.
+- Use your own build folder, the same one for all your worktrees (so libraries
+  aren't recompiled per branch; never share it with another agent):
+  `export CARGO_TARGET_DIR="$(git rev-parse --path-format=absolute --git-common-dir)/../target/agent-<name>"`
+  (PowerShell: `$env:CARGO_TARGET_DIR = "$(git rev-parse --path-format=absolute --git-common-dir)/../target/agent-<name>"`).
+  That is `<main checkout>/target/agent-<name>`, with your agent name in place of `<name>`.
 - Work in your own git worktree and branch: `t<task-number>-<short-name>`.
 - New feature = new file. Never grow a shared file when a new module works.
 - Hot spots (re-read right before editing; keep edits to one line where possible):
