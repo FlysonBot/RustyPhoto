@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@opus-1'
 created_date: '2026-10-31T23:45:00Z'
-updated_date: '2026-11-01T01:33:00Z'
+updated_date: '2026-11-01T02:08:00Z'
 labels:
   - track:design
   - agent:opus
@@ -98,6 +98,8 @@ Implementation notes (opus-1):
 - The File-menu snapshot includes the mouse pointer (drawn by the harness) and will legitimately change when File commands go live (TASK-19).
 - Verified: tests pass on this machine (Vulkan); replacing startup.png with the wrong image fails the test; WGPU_BACKEND=metal (no adapter on Linux) makes tests print SKIP and pass, and the CLI exit with code 2.
 - No catalog changes (no command added), so coverage/floor unchanged.
+
+Cross-family review (Gemini via agy, 2026-10-31): fixed (1) flag without a value (--snapshot / --size) now exits 2 instead of opening the window or silently using defaults; (2) harness()/write_png() reject zero or oversized sizes themselves; (3) snapshot tests skip only on NoGpu, other errors fail. Dropped as not real: 'baseline PNGs missing' (they are committed, just excluded from the reviewed diff); negative canvas scale (sizes 1x1, 50x20, 1x800 render fine in a debug build); mask colour sampling (deterministic, applied identically to stored and new image); live_count per-frame cost (pre-existing, ~600 lookups).
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

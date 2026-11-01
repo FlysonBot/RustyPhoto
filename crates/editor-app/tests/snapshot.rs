@@ -25,26 +25,27 @@ const HEIGHT: u32 = 800;
 const MASK_W: u32 = 400;
 const MASK_H: u32 = 26;
 
-fn harness_or_skip(test: &str) -> Option<egui_kittest::Harness<'static, editor_app::EditorApp>> {
+type AppHarness = egui_kittest::Harness<'static, editor_app::EditorApp>;
+
+fn harness_or_skip(test: &str) -> Result<Option<AppHarness>, snapshot::SnapshotError> {
+    // Only "no GPU adapter" is a skip; any other error fails the test.
     match snapshot::harness(WIDTH, HEIGHT) {
-        Ok(h) => Some(h),
-        Err(e) => {
+        Ok(h) => Ok(Some(h)),
+        Err(e @ snapshot::SnapshotError::NoGpu(_)) => {
             // Written straight to stderr (not eprintln!) so the test
             // runner doesn't hide it: the skip must show in CI logs.
             let _ = writeln!(
                 std::io::stderr(),
                 "SKIP {test}: no GPU adapter, snapshot test not run ({e})"
             );
-            None
+            Ok(None)
         }
+        Err(e) => Err(e),
     }
 }
 
 /// Renders, masks the live count, and compares with the stored PNG.
-fn check(
-    harness: &mut egui_kittest::Harness<'static, editor_app::EditorApp>,
-    name: &str,
-) -> Result<(), String> {
+fn check(harness: &mut AppHarness, name: &str) -> Result<(), String> {
     let mut image = harness.render()?;
     let (w, h) = image.dimensions();
     for y in h.saturating_sub(MASK_H)..h {
@@ -62,7 +63,7 @@ fn check(
 
 #[test]
 fn startup() {
-    let Some(mut harness) = harness_or_skip("startup") else {
+    let Some(mut harness) = harness_or_skip("startup").unwrap() else {
         return;
     };
     assert_eq!(harness.state().status(), "Ready");
@@ -71,7 +72,7 @@ fn startup() {
 
 #[test]
 fn file_menu_open() {
-    let Some(mut harness) = harness_or_skip("file_menu_open") else {
+    let Some(mut harness) = harness_or_skip("file_menu_open").unwrap() else {
         return;
     };
     harness.get_by_label("File").click();
