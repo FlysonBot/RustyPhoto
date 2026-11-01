@@ -24,5 +24,11 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      # Linux runners have no GPU. Mesa's software Vulkan driver (lavapipe)
+      # lets the UI snapshot tests run instead of skipping (TASK-29, ADR-008).
+      # Windows and macOS runners already have a graphics adapter.
+      - name: Install software renderer (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends mesa-vulkan-drivers
       - name: Run the full gate
         run: cargo xtask ci
