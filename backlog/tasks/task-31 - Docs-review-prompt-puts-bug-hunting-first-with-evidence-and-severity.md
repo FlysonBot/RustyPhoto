@@ -1,11 +1,11 @@
 ---
 id: TASK-31
 title: 'Docs: review prompt puts bug hunting first, with evidence and severity'
-status: In Progress
+status: Done
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T04:14:00Z'
-updated_date: '2026-11-01T04:16:00Z'
+updated_date: '2026-11-01T04:20:00Z'
 labels:
   - track:design
   - agent:opus
@@ -30,6 +30,12 @@ docs/prompts/04-review.md was a compliance checklist with no bug hunt. In the Ge
 - [x] #4 Review is posted with gh pr review --comment and starts with a verdict
 - [x] #5 cargo xtask ci passes
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Owner approved merge 2026-10-31.
+<!-- SECTION:NOTES:END -->
 
 ## Final Summary
 
