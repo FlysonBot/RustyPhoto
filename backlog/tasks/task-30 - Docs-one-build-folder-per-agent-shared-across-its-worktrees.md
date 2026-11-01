@@ -1,11 +1,11 @@
 ---
 id: TASK-30
 title: 'Docs: one build folder per agent, shared across its worktrees'
-status: In Progress
+status: Done
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T03:16:00Z'
-updated_date: '2026-11-01T03:24:00Z'
+updated_date: '2026-11-01T03:28:00Z'
 labels:
   - track:design
   - agent:opus
@@ -39,6 +39,8 @@ AGENTS.md section 6 says CARGO_TARGET_DIR=target/agent-<name>. That path is rela
 
 <!-- SECTION:NOTES:BEGIN -->
 Measured 2026-10-31 with the shared folder: cold full gate (cargo xtask ci) 246 s; same gate from another worktree (t29) reusing the folder 2 s, with zero crates recompiled when the code is identical. Gemini review: added PowerShell form and kept NAME explicit in 03-implement.md. Rejected: fingerprint invalidation across worktrees (measured: none); lock contention (one agent runs one task at a time, different agents use different folders); bare-repo / git<2.31 (not our setup).
+
+Owner approved merge 2026-10-31.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary
