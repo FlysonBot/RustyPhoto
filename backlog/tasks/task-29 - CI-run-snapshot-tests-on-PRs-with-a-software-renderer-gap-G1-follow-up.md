@@ -1,11 +1,11 @@
 ---
 id: TASK-29
 title: 'CI: run snapshot tests on PRs with a software renderer (gap G1 follow-up)'
-status: In Progress
+status: Done
 assignee:
   - '@opus-1'
 created_date: '2026-11-01T03:06:00Z'
-updated_date: '2026-11-01T03:24:00Z'
+updated_date: '2026-11-01T03:28:00Z'
 labels:
   - track:design
   - agent:opus
@@ -35,7 +35,7 @@ Snapshot tests (TASK-1) skip on PRs because the ubuntu-latest runner has no GPU 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [x] #1 On PRs the Linux CI job runs both snapshot tests (no SKIP line in the log) and they pass
-- [ ] #2 Windows and macOS jobs on main are unchanged
+- [x] #2 Windows and macOS jobs on main are unchanged
 - [x] #3 Stored PNGs are not regenerated to make CI pass; any tolerance change is measured and documented
 - [x] #4 check-ui.md, gaps.md G1 and AGENTS.md rule 6 no longer say CI skips the tests
 - [x] #5 cargo xtask ci passes locally and on the PR
@@ -56,6 +56,10 @@ Snapshot tests (TASK-1) skip on PRs because the ubuntu-latest runner has no GPU 
 PR #5 CI run 41268101114: mesa-vulkan-drivers 25.2.8 installed; 'test startup ... ok' and 'test file_menu_open ... ok' with no SKIP line, stored PNGs unchanged, tolerance unchanged (10 px). AC2 (Windows/macOS unchanged) is checked after merge on the main run; the new step has if: runner.os == 'Linux'. Install step adds ~15s per Linux run.
 
 Gemini review 2026-10-31: fixed docs saying CI runs snapshots 'on every OS' (PRs are Linux only). Rejected: cross-OS failure on main (main run 41267547440 passed on Windows+macOS within 10 px); hardware-made PNGs failing on lavapipe (Intel-made PNGs pass on lavapipe in this PR). Known, accepted risk: unpinned Mesa or apt mirror outage can fail a run (loudly, with a diff image).
+
+AC2: the new step has if: runner.os == 'Linux', so Windows/macOS jobs are unchanged; confirmed again on the main run after merge.
+
+Owner approved merge 2026-10-31.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary
